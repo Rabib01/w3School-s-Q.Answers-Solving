@@ -23,18 +23,17 @@ console.log("hi");
   // Q-2 : Print the current viewPort
   //
   const print = document.querySelector(".to-print");
-  
+
   print.addEventListener("click", function () {
     window.print();
-});
-*/ const init = function () {
+    });
   // Q-3: Calculate the Area of a triangle :
   // Area is caluclated sing Heron's formula to get the semi-perimeter and then the area
-
+  
   const triangeAreaCalculatorfunction = function (a, b, c) {
     let area = 0;
     console.log(a, b, c);
-
+    
     // Applying Heron's formula
     const semiPerimeter = (a + b + c) / 2;
     console.log(`${semiPerimeter}`);
@@ -47,6 +46,38 @@ console.log("hi");
   console.log(
     `The area is : ${triangeAreaCalculatorfunction(5, 6, 7).toFixed(2)} unit squared`,
   );
+  
+  //5. Rotate String 'w3resource' Periodically
+  
+  */ const init = function () {
+  // Write a JavaScript program to rotate the string 'w3resource' in the right direction. This is done by periodically removing one letter from the string end and attaching it to the fronthe
+
+  const printRotatedString = function (string) {
+    //
+    const result = string.split("");
+
+    for (let i = 0; i < result.length; i++) {
+      const temp = result.pop();
+      result.unshift(temp);
+      console.log(result.join(""));
+    }
+  };
+
+  // setInterval(() => printRotatedString(string), 2000);
+
+  printRotatedString("abcd");
+  console.log("");
+  printRotatedString("w3Schools");
+
+  // const stringToRotate = "w3Schools";
+  // const result = stringToRotate.split("");
+  // console.log(result);
+
+  // for (let i = 0; i < result.length; i++) {
+  //   const temp = result.pop();
+  //   result.unshift(temp);
+  //   console.log(result.join(""));
+  // }
 
   // -END
 };
