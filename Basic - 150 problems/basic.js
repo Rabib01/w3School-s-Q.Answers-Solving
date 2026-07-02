@@ -90,6 +90,7 @@ console.log("hi");
 
   setInterval(() => {
     string = rotateStringLogic(string);
+    console.clear();
     console.log(string);
   }, 1000);
 
