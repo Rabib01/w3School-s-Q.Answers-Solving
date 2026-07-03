@@ -115,6 +115,13 @@ console.log("hi");
     year: "numeric",
   };
 
+  const options2 = {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  };
+
   const date = Date.now();
   // console.log(Date.now());
   const dateFormat = new Intl.DateTimeFormat("en-GB", options).format(date);
@@ -133,12 +140,28 @@ console.log("hi");
     options,
   ).formatRange(startDate, endDate);
   console.log(formattedDateRange);
+
   console.log("");
-  // console.log(typeof startDate, typeof endDate, typeof formattedDateRange);
   console.log("");
 
   const dateObject = new Date(Date.UTC(2014, 0, 1));
   console.log(dateObject, typeof dateObject);
+  console.log("");
+  console.log("");
+
+  console.log(
+    `All of the years that has Sundays in their 1st January from 2014-2050 are :`,
+  );
+
+  // Print 10 years worth of data from 2014-2024 1st Januart
+  for (let i = 0; i < 27; i++) {
+    const date = new Date(Date.UTC(2014 + i, 0, 1));
+    const dateFormat = new Intl.DateTimeFormat("en-GB", options2).format(date);
+    // console.log(dateFormat);
+    if (dateFormat.includes(`Sunday, 1 January`)) {
+      console.log(dateFormat);
+    }
+  }
 
   //-end
   // -END
