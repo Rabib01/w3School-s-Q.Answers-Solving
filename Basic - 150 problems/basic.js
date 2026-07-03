@@ -106,9 +106,10 @@ console.log("hi");
     //   result.unshift(temp);
     //   console.log(result.join(""));
     // }
-*/ const init = function () {
-  //7. Find Years When Jan 1 is Sunday (2014?2050)
-  const options = {
+    // Hi 
+
+    //7. Find Years When Jan 1 is Sunday (2014?2050)
+    const options = {
     weekday: "long",
     day: "numeric",
     month: "long",
@@ -121,7 +122,7 @@ console.log("hi");
     month: "long",
     year: "numeric",
   };
-
+  
   const date = Date.now();
   // console.log(Date.now());
   const dateFormat = new Intl.DateTimeFormat("en-GB", options).format(date);
@@ -132,7 +133,7 @@ console.log("hi");
   // console.log("");
   // console.log(typeof new Date(2007, 0, 10, 10, 0, 0));
   // console.log(typeof Date.UTC(2007, 0, 10, 10, 0, 0));
-
+  
   const startDate = new Date(Date.UTC(2014, 0, 1));
   const endDate = new Date(Date.UTC(2050, 0, 1));
   const formattedDateRange = new Intl.DateTimeFormat(
@@ -140,21 +141,19 @@ console.log("hi");
     options,
   ).formatRange(startDate, endDate);
   console.log(formattedDateRange);
-
+  
   console.log("");
   console.log("");
-
+  
   const dateObject = new Date(Date.UTC(2014, 0, 1));
   console.log(dateObject, typeof dateObject);
   console.log("");
   console.log("");
+  
+  console.log(`The following years have a Sunday on 1 January:`);
+  const yearsBetween = 2050 - 2014;
 
-  console.log(
-    `All of the years that has Sundays in their 1st January from 2014-2050 are :`,
-  );
-
-  // Print 10 years worth of data from 2014-2024 1st Januart
-  for (let i = 0; i < 27; i++) {
+  for (let i = 0; i < yearsBetween + 1; i++) {
     const date = new Date(Date.UTC(2014 + i, 0, 1));
     const dateFormat = new Intl.DateTimeFormat("en-GB", options2).format(date);
     // console.log(dateFormat);
@@ -162,6 +161,40 @@ console.log("hi");
       console.log(dateFormat);
     }
   }
+  // 7 ends here
+  
+  */ const init = function () {
+  // 8. Random Integer Guess Game
+  // Write a JavaScript program where the program takes a random integer between 1 and 10, and the user is then prompted to input a guess number. The program displays a message "Good Work" if the input matches the guess number otherwise "Not matched".
+  // const min = 1;
+  // const max = 10;
+  const userNumber = +prompt("please enter a number between 1-10");
+  // console.log(typeof userNumber);
+
+  const randNumberBetween = function (min, max) {
+    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+    return randomNumber;
+  };
+
+  //check ifthe number generated is between 1-10?
+  const numberChecker = function () {
+    const number = randNumberBetween(0, 10);
+    if (userNumber === number) {
+      console.log(`Good Job, The number matched`);
+    } else {
+      console.log(
+        `Not matched : User's number was : ${userNumber} and random Number generated was ${number}`,
+      );
+    }
+  };
+
+  // for (let o = 0; o < 100; o++) {
+  //   randNumberBetween(0, 100);
+  // }
+
+  // console.log(randNumberBetween(0, 100));
+  numberChecker();
+  // Number 8 ends here
 
   //-end
   // -END
