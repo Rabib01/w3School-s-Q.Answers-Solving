@@ -62,14 +62,41 @@ console.log("hi");
     }
   };
 
-  // setInterval(() => printRotatedString(string), 2000);
-  
-  printRotatedString("abcd");
-  console.log("");
-  printRotatedString("w3Schools");
-  
-  // -end
-  
+  // const rotateStringLogic = function (string) {
+  //   // const result = string.split("").join(""); // cannot pop when turned to a single string.
+
+  //   // const result = string.split("");
+  //   // console.log(result);
+  //   // const lastLetter = result.pop();
+  //   // console.log(result);
+  //   // result.unshift(lastLetter);
+  //   // console.log(result);
+
+  //   const result = string.split("");
+  //   const lastLetter = result.pop();
+  //   result.unshift(lastLetter);
+  // };
+
+  let string = "w3schools";
+
+  const rotateStringLogic = function (string) {
+    const result = string.split("");
+    const lastLetter = result.pop();
+    result.unshift(lastLetter);
+
+    return result.join("");
+  };
+
+  setInterval(() => {
+    string = rotateStringLogic(string);
+    console.clear();
+    console.log(string);
+  }, 1000);
+
+  // printRotatedString("abcd");
+  // console.log("");
+  // printRotatedString("w3Schools");
+
   // const stringToRotate = "w3Schools";
   // const result = stringToRotate.split("");
   // console.log(result);
