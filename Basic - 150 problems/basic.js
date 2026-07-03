@@ -49,9 +49,8 @@ console.log("hi");
   
   //5. Rotate String 'w3resource' Periodically
   
-  */ const init = function () {
   // Write a JavaScript program to rotate the string 'w3resource' in the right direction. This is done by periodically removing one letter from the string end and attaching it to the fronthe
-
+  
   const printRotatedString = function (string) {
     //
     const result = string.split("");
@@ -64,21 +63,57 @@ console.log("hi");
   };
 
   // setInterval(() => printRotatedString(string), 2000);
-
+  
   printRotatedString("abcd");
   console.log("");
   printRotatedString("w3Schools");
-
+  
+  // -end
+  
   // const stringToRotate = "w3Schools";
   // const result = stringToRotate.split("");
   // console.log(result);
-
+  
   // for (let i = 0; i < result.length; i++) {
-  //   const temp = result.pop();
-  //   result.unshift(temp);
-  //   console.log(result.join(""));
-  // }
+    //   const temp = result.pop();
+    //   result.unshift(temp);
+    //   console.log(result.join(""));
+    // }
+*/ const init = function () {
+  //7. Find Years When Jan 1 is Sunday (2014?2050)
+  const options = {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  };
 
+  const date = Date.now();
+  // console.log(Date.now());
+  const dateFormat = new Intl.DateTimeFormat("en-GB", options).format(date);
+  console.log(dateFormat);
+  console.log("");
+  // console.log(new Date(2007, 0, 10, 10, 0, 0));
+  // console.log(Date.UTC(2007, 0, 10, 10, 0, 0));
+  // console.log("");
+  // console.log(typeof new Date(2007, 0, 10, 10, 0, 0));
+  // console.log(typeof Date.UTC(2007, 0, 10, 10, 0, 0));
+
+  const startDate = new Date(Date.UTC(2014, 0, 1));
+  const endDate = new Date(Date.UTC(2050, 0, 1));
+  const formattedDateRange = new Intl.DateTimeFormat(
+    "en-GB",
+    options,
+  ).formatRange(startDate, endDate);
+  console.log(formattedDateRange);
+  console.log("");
+  // console.log(typeof startDate, typeof endDate, typeof formattedDateRange);
+  console.log("");
+
+  const dateObject = new Date(Date.UTC(2014, 0, 1));
+  console.log(dateObject, typeof dateObject);
+
+  //-end
   // -END
 };
 
