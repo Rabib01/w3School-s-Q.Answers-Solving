@@ -197,6 +197,8 @@ console.log("hi");
   //function call for the game
   // numberChecker();
   */ const init = function () {
+  /** Question 10 starts here */
+  /** Multiplication and division : User unput */
   const multiply = document.querySelector(".multiply");
   const divide = document.querySelector(".divide");
   const showingResult = document.querySelector(".hidden");
@@ -220,6 +222,27 @@ console.log("hi");
     const solution = (num1 / num2).toFixed(3);
     result.textContent = solution;
   });
+  /** Question 10 ends here */
+
+  /** Question 11 starts here */
+  /** To and from C to Farenheit */
+  const celciusToFarenheit = function (celcius) {
+    const farenheit = (celcius * (9 / 5) + 32).toFixed(3);
+    console.log(`${farenheit} °Farenheit`);
+  };
+
+  const farenheitToCelcius = function (farenheit) {
+    const celcius = ((5 / 9) * (farenheit - 32)).toFixed(3);
+    console.log(`${celcius} °Celcius`);
+  };
+
+  celciusToFarenheit(100);
+  farenheitToCelcius(100);
+  /** Question 11 ends here */
+
+  /** Question number 12 starts here: Current website url */
+  console.log(window.location.href);
+  /** Question number 12 Ends Here: Current website url */
 
   //-end
   // -END
