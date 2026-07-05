@@ -163,14 +163,12 @@ console.log("hi");
   }
   // 7 ends here
   
-  */ const init = function () {
   // 8. Random Integer Guess Game
   // Write a JavaScript program where the program takes a random integer between 1 and 10, and the user is then prompted to input a guess number. The program displays a message "Good Work" if the input matches the guess number otherwise "Not matched".
   // const min = 1;
   // const max = 10;
-  const userNumber = +prompt("please enter a number between 1-10");
   // console.log(typeof userNumber);
-
+  
   const randNumberBetween = function (min, max) {
     const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
     return randomNumber;
@@ -178,23 +176,50 @@ console.log("hi");
 
   //check ifthe number generated is between 1-10?
   const numberChecker = function () {
+    const userNumber = +prompt("please enter a number between 1-10");
     const number = randNumberBetween(0, 10);
     if (userNumber === number) {
       console.log(`Good Job, The number matched`);
     } else {
       console.log(
-        `Not matched : User's number was : ${userNumber} and random Number generated was ${number}`,
-      );
-    }
-  };
+    `Not matched : User's number was : ${userNumber} and random Number generated was ${number}`,
+  );
+}
+};
 
-  // for (let o = 0; o < 100; o++) {
+// for (let o = 0; o < 100; o++) {
   //   randNumberBetween(0, 100);
   // }
-
+  
   // console.log(randNumberBetween(0, 100));
-  numberChecker();
   // Number 8 ends here
+  
+  //function call for the game
+  // numberChecker();
+  */ const init = function () {
+  const multiply = document.querySelector(".multiply");
+  const divide = document.querySelector(".divide");
+  const showingResult = document.querySelector(".hidden");
+  const result = document.querySelector(".result");
+
+  const firstNumber = document.querySelector("#first-number");
+  const secondNumber = document.querySelector("#second-number");
+
+  multiply.addEventListener("click", function () {
+    showingResult.classList.remove("hidden");
+    const num1 = +firstNumber.value;
+    const num2 = +secondNumber.value;
+    const solution = num1 * num2;
+    result.textContent = solution;
+  });
+
+  divide.addEventListener("click", function () {
+    showingResult.classList.remove("hidden");
+    const num1 = +firstNumber.value;
+    const num2 = +secondNumber.value;
+    const solution = (num1 / num2).toFixed(3);
+    result.textContent = solution;
+  });
 
   //-end
   // -END
