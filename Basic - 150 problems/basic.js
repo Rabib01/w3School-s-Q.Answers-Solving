@@ -244,7 +244,59 @@ console.log("hi");
   console.log(window.location.href);
   /** Question number 12 Ends Here: Current website url */
 
+  // 19. Check if the integer is within 20 of 100 or 400
+  const differenceBetween20OR400Checker = function (number) {
+    //Applying DRT principle
+
+    const variable1 = 100;
+    const variable2 = 400;
+    if (Math.abs(variable1 - number) < 20) {
+      return `Yes, it is : ${variable1 - number} closer to ${variable1}`;
+    }
+    if (Math.abs(variable2 - number) < 20) {
+      return `Yes, it is : ${variable2 - number} closer to ${variable2}`;
+    } else {
+      return `No, it is not within that range`;
+    }
+  };
+
+  console.log(differenceBetween20OR400Checker(79)); // 21
+  console.log(differenceBetween20OR400Checker(81)); // 19
+  console.log(differenceBetween20OR400Checker(102)); // 02
+  console.log(differenceBetween20OR400Checker(122)); // 22
+
+  console.log("");
+  console.log("");
+  console.log(differenceBetween20OR400Checker(402)); // -2
+  console.log(differenceBetween20OR400Checker(422)); // 22
+  console.log(differenceBetween20OR400Checker(418)); // -18
+  console.log(differenceBetween20OR400Checker(435)); // 22
+
+  console.log("");
+  console.log("");
+
+  //20 - Check if One Integer is Positive and One is Negative
+  //  const signCheckerFunction = function (number) {};. This is a stupid question, not going to do it
+
+  //21 - Add 'Py' to Start of String if Not Present
+  const pyAdderFunction = function (string) {
+    const stringToBeConcatenated = "py";
+    // console.log(string);
+    // console.log(string.toLowerCase().includes("py"));
+
+    if (!string.toLowerCase().includes("py")) {
+      return `${stringToBeConcatenated.concat("", string)}`;
+    } else {
+      return `The string had a "py" as it was ${string}`;
+    }
+  };
+  console.log(pyAdderFunction("python"));
+  console.log(pyAdderFunction("thon"));
+
+  //22. Remove Character at Specified Position in String
+
   //-end
+
   // -END
 };
 
