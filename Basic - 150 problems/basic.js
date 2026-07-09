@@ -196,9 +196,8 @@ console.log("hi");
   
   //function call for the game
   // numberChecker();
-  */ const init = function () {
-  /** Question 10 starts here */
-  /** Multiplication and division : User unput */
+  /** Question 10 starts here 
+  /** Multiplication and division : User unput 
   const multiply = document.querySelector(".multiply");
   const divide = document.querySelector(".divide");
   const showingResult = document.querySelector(".hidden");
@@ -206,7 +205,7 @@ console.log("hi");
 
   const firstNumber = document.querySelector("#first-number");
   const secondNumber = document.querySelector("#second-number");
-
+  
   multiply.addEventListener("click", function () {
     showingResult.classList.remove("hidden");
     const num1 = +firstNumber.value;
@@ -222,10 +221,10 @@ console.log("hi");
     const solution = (num1 / num2).toFixed(3);
     result.textContent = solution;
   });
-  /** Question 10 ends here */
+  /** Question 10 ends here 
 
-  /** Question 11 starts here */
-  /** To and from C to Farenheit */
+  /** Question 11 starts here 
+  /** To and from C to Farenheit 
   const celciusToFarenheit = function (celcius) {
     const farenheit = (celcius * (9 / 5) + 32).toFixed(3);
     console.log(`${farenheit} °Farenheit`);
@@ -235,14 +234,14 @@ console.log("hi");
     const celcius = ((5 / 9) * (farenheit - 32)).toFixed(3);
     console.log(`${celcius} °Celcius`);
   };
-
+  
   celciusToFarenheit(100);
   farenheitToCelcius(100);
   /** Question 11 ends here */
 
-  /** Question number 12 starts here: Current website url */
+/** Question number 12 starts here: Current website url 
   console.log(window.location.href);
-  /** Question number 12 Ends Here: Current website url */
+  /** Question number 12 Ends Here: Current website url 
 
   // 19. Check if the integer is within 20 of 100 or 400
   const differenceBetween20OR400Checker = function (number) {
@@ -259,7 +258,7 @@ console.log("hi");
       return `No, it is not within that range`;
     }
   };
-
+  
   console.log(differenceBetween20OR400Checker(79)); // 21
   console.log(differenceBetween20OR400Checker(81)); // 19
   console.log(differenceBetween20OR400Checker(102)); // 02
@@ -283,7 +282,7 @@ console.log("hi");
     const stringToBeConcatenated = "py";
     // console.log(string);
     // console.log(string.toLowerCase().includes("py"));
-
+    
     if (!string.toLowerCase().includes("py")) {
       return `The string needed a "py" to be added ${stringToBeConcatenated.concat("", string)}`;
     } else {
@@ -292,9 +291,11 @@ console.log("hi");
   };
   console.log(pyAdderFunction("python"));
   console.log(pyAdderFunction("thon"));
+  console.log(pyAdderFunction("thpython"));
+  
   console.log("");
   console.log("");
-
+  
   //22. Remove Character at Specified Position in String
   const characterRemoverFunction = function (
     string,
@@ -304,7 +305,7 @@ console.log("hi");
     console.log(string, characterRemoverIndexStart, characterRemoverIndexEnd);
     // const splittedString = string.split("");
     // console.log(splittedString);
-
+    
     // const splicedString = string.split("").splice(0, 2);
     // console.log(splicedString);
     // console.log(string);
@@ -322,8 +323,8 @@ console.log("hi");
 
     // normal solution
     //   const slicedString = string.slice(
-    //     characterRemoverIndexStart,
-    //     characterRemoverIndexEnd,
+      //     characterRemoverIndexStart,
+      //     characterRemoverIndexEnd,
     //   );
     //   console.log(slicedString);
   };
@@ -335,7 +336,7 @@ console.log("hi");
   );
   console.log("");
   console.log("");
-
+  
   //23. Swap first and last character of a string.
   const swapperFirstAndLastCharacter = function (string) {
     // console.log(string);
@@ -343,11 +344,11 @@ console.log("hi");
     // console.log(splittedString);
     const lastChar = splittedString.pop();
     const firstChar = splittedString.shift();
-
+    
     splittedString.unshift(lastChar);
     splittedString.push(firstChar);
     // console.log(splittedString);
-
+    
     const newString = splittedString.join("");
     console.log(newString);
   };
@@ -355,30 +356,30 @@ console.log("hi");
   swapperFirstAndLastCharacter("The quick brown fox jumped over the lazy dog");
   console.log("");
   console.log("");
-
+  
   // console.log("");
   // console.log(``);
-
+  
   // const arr = [2, 3];
-
+  
   // const result1 = arr.unshift(1);
-
+  
   // console.log(result1);
   // console.log(arr);
-
+  
   //24. Add first character to the front and back of the string :
   const characterAdderToFrontAndBack = function (string) {
     console.log(string);
-
+    
     const splitted = string.split("");
 
     const firstCharExtract = string.slice(0, 1);
 
     // it did mot woerk with shift() as it mutated the array and doung unshift Gave the quick instead of TThe quick. so I used string.slice() instead
-
+    
     splitted.unshift(firstCharExtract);
     console.log(splitted);
-
+    
     splitted.push(firstCharExtract);
     console.log(splitted, firstCharExtract);
     console.log("");
@@ -388,6 +389,100 @@ console.log("hi");
   };
 
   characterAdderToFrontAndBack("The quick brown fox jumped over the lazy dog");
+  
+  */ const init = function () {
+  //Q;21 - Needs to be done again
+  const pyAdderFunction = function (string) {
+    const stringToBeConcatenated = "py";
+    // console.log(string);
+    // console.log(string.toLowerCase().includes("py"));
+    // console.log(string.toLowerCase().slice(0, 2).includes("py"));
+
+    if (!string.toLowerCase().slice(0, 2).includes("py")) {
+      return `The string needed a "py" to be added ${stringToBeConcatenated.concat("", string)}`;
+    } else {
+      return `The string had a "py" as it was ${string}`;
+    }
+  };
+  console.log(pyAdderFunction("python"));
+  console.log(pyAdderFunction("thon"));
+  console.log(pyAdderFunction("thpython"));
+  console.log("");
+  console.log("");
+
+  //25. Stupud question - not going to be doing this
+
+  //26. Add Last 3 Characters to Front and Back of String
+  const threeCharacterAdderFunction = function (string) {
+    console.log(string);
+    const lastThreeChars = string.slice(-3);
+    console.log(lastThreeChars.concat(string) + lastThreeChars);
+  };
+  threeCharacterAdderFunction("The quick brown fox jumps over the lazy dog");
+  console.log("");
+  console.log("");
+
+  //27. Check if String Starts with 'Java'
+  const javaStarterChecketFunction = function (string) {
+    // console.log(string);
+    const javaCheckerBool = string.toLowerCase().slice(0, 4).includes("java");
+    // console.log(javaCheckerBool);
+    if (javaCheckerBool) {
+      console.log(`the string has java at the beginning`);
+    } else {
+      console.log(`the string does not have java in the beginning`);
+    }
+  };
+  javaStarterChecketFunction("JavaThe quick brown fox jumps over the lazy dog");
+  javaStarterChecketFunction("The quick brown fox jumps over the lazy dog");
+  console.log("");
+  console.log("");
+
+  //28. Check if Two Integers are in Range 50?99
+  const rangeFinder = function (num1, num2) {
+    console.log(num1, num2);
+
+    if (num1 >= 50 && num1 <= 99) {
+      console.log(`${num1} is within range`);
+    }
+
+    if (num2 >= 50 && num2 <= 99) {
+      console.log(`${num2} is within range`);
+    } else {
+      console.log("none are in range");
+    }
+  };
+  rangeFinder(21, 51);
+  rangeFinder(50, 51);
+  rangeFinder(21, 11);
+  console.log("");
+  console.log(``);
+  console.log("");
+
+  //30. Remove 'Script' from String at 5th Position
+  const scriptRemover = function (string) {
+    // console.log(`${string}`);
+    const scriptChecker = string.toLowerCase().slice(4, 10).includes("script");
+    // console.log(scriptChecker);
+
+    if (scriptChecker) {
+      console.log(string.split("").splice(4, 6).toString());
+    }
+
+    // else {
+    //   console.log(`no`);
+    // }
+  };
+  scriptRemover("The Scriptquick brown fox jumps over the lazy dog");
+  console.log("");
+  // scriptRemover("The Scrquick brown fox jumps over the lazy dog");
+  // scriptRemover("The quicSaSk brown fox jumps over the lazy dog");
+  scriptRemover("JavaScript");
+  console.log("");
+  console.log("");
+  const months = ["Jan", "March", "April", "June"];
+  months.splice(0, 1);
+  console.log(months.toString());
 
   // -END
 };
