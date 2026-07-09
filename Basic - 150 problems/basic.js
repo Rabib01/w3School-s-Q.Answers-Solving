@@ -285,17 +285,109 @@ console.log("hi");
     // console.log(string.toLowerCase().includes("py"));
 
     if (!string.toLowerCase().includes("py")) {
-      return `${stringToBeConcatenated.concat("", string)}`;
+      return `The string needed a "py" to be added ${stringToBeConcatenated.concat("", string)}`;
     } else {
       return `The string had a "py" as it was ${string}`;
     }
   };
   console.log(pyAdderFunction("python"));
   console.log(pyAdderFunction("thon"));
+  console.log("");
+  console.log("");
 
   //22. Remove Character at Specified Position in String
+  const characterRemoverFunction = function (
+    string,
+    characterRemoverIndexStart,
+    characterRemoverIndexEnd,
+  ) {
+    console.log(string, characterRemoverIndexStart, characterRemoverIndexEnd);
+    // const splittedString = string.split("");
+    // console.log(splittedString);
 
+    // const splicedString = string.split("").splice(0, 2);
+    // console.log(splicedString);
+    // console.log(string);
+    // console.log("");
+    // it becomes a bit leangthy if you try to do with .split and .splice. let me try to do this anyway because it sounds like fun
+
+    // Solution using .split() and .splice() -> basically the array that was newly created will be mutated, the rest would remain the same
+    const arr = string.split("");
+    const removed = arr.splice(0, 2);
+    const remainder = arr.join("");
+    console.log(arr);
+    console.log(removed);
+    console.log(string);
+    console.log(remainder);
+
+    // normal solution
+    //   const slicedString = string.slice(
+    //     characterRemoverIndexStart,
+    //     characterRemoverIndexEnd,
+    //   );
+    //   console.log(slicedString);
+  };
   //-end
+  characterRemoverFunction(
+    "The quick brown fox jumped over the lazy dog",
+    31,
+    35,
+  );
+  console.log("");
+  console.log("");
+
+  //23. Swap first and last character of a string.
+  const swapperFirstAndLastCharacter = function (string) {
+    // console.log(string);
+    const splittedString = string.split("");
+    // console.log(splittedString);
+    const lastChar = splittedString.pop();
+    const firstChar = splittedString.shift();
+
+    splittedString.unshift(lastChar);
+    splittedString.push(firstChar);
+    // console.log(splittedString);
+
+    const newString = splittedString.join("");
+    console.log(newString);
+  };
+
+  swapperFirstAndLastCharacter("The quick brown fox jumped over the lazy dog");
+  console.log("");
+  console.log("");
+
+  // console.log("");
+  // console.log(``);
+
+  // const arr = [2, 3];
+
+  // const result1 = arr.unshift(1);
+
+  // console.log(result1);
+  // console.log(arr);
+
+  //24. Add first character to the front and back of the string :
+  const characterAdderToFrontAndBack = function (string) {
+    console.log(string);
+
+    const splitted = string.split("");
+
+    const firstCharExtract = string.slice(0, 1);
+
+    // it did mot woerk with shift() as it mutated the array and doung unshift Gave the quick instead of TThe quick. so I used string.slice() instead
+
+    splitted.unshift(firstCharExtract);
+    console.log(splitted);
+
+    splitted.push(firstCharExtract);
+    console.log(splitted, firstCharExtract);
+    console.log("");
+
+    const newString = splitted.join("");
+    console.log(newString);
+  };
+
+  characterAdderToFrontAndBack("The quick brown fox jumped over the lazy dog");
 
   // -END
 };
