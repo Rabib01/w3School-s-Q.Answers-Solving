@@ -483,6 +483,25 @@ console.log("hi");
   const months = ["Jan", "March", "April", "June"];
   months.splice(0, 1);
   console.log(months.toString());
+  console.log("");
+  console.log("");
+
+  // Personal Problems
+  // Taking multiple inputs and turning htem into strings
+  let numbers = parseInt(prompt("Please enter the numbers"));
+  console.log(numbers);
+
+  let data = [];
+  console.log(data);
+
+  while (numbers > 0) {
+    data.push(Number(prompt("Array elements please")));
+    numbers -= 1;
+  }
+
+  console.log(data);
+
+  const data2 = [1111, 1234, 1235];
 
   // -END
 };
