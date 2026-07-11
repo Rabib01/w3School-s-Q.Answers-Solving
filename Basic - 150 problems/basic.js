@@ -456,17 +456,34 @@ console.log("hi");
   rangeFinder(50, 51);
   rangeFinder(21, 11);
   console.log("");
-  console.log(``);
   console.log("");
 
   //30. Remove 'Script' from String at 5th Position
   const scriptRemover = function (string) {
     // console.log(`${string}`);
-    const scriptChecker = string.toLowerCase().slice(4, 10).includes("script");
-    // console.log(scriptChecker);
+    // console.log(string.split("").splice(4, 6).join("").toLowerCase());
+
+    const scriptChecker = string
+      .split("")
+      .splice(4, 6)
+      .join("")
+      .toLowerCase()
+      .includes("script");
+
+    // const temp = string.toLowerCase().split("");
+    // const arr = temp.splice(4, 6);
+    // console.log(temp, arr);
+
+    // .splice(4, 6, "script") is removving s c r i p t and replacing s with script
+    // .splice(4, 6) is removing it altogether
 
     if (scriptChecker) {
-      console.log(string.split("").splice(4, 6).toString());
+      const temp = string.split("");
+      const arr = temp.splice(4, 6);
+      const newString = temp.join("");
+      console.log(newString);
+    } else {
+      console.log(string);
     }
 
     // else {
@@ -474,34 +491,32 @@ console.log("hi");
     // }
   };
   scriptRemover("The Scriptquick brown fox jumps over the lazy dog");
-  console.log("");
-  // scriptRemover("The Scrquick brown fox jumps over the lazy dog");
-  // scriptRemover("The quicSaSk brown fox jumps over the lazy dog");
+  scriptRemover("The Scrquick brown fox jumps over the lazy dog");
+  scriptRemover("The quicSaSk brown fox jumps over the lazy dog");
   scriptRemover("JavaScript");
-  console.log("");
-  console.log("");
-  const months = ["Jan", "March", "April", "June"];
-  months.splice(0, 1);
-  console.log(months.toString());
-  console.log("");
-  console.log("");
+
+  // console.log("");
+  // console.log("");
+  // const months = ["Jan", "March", "April", "June"];
+  // months.splice(0, 1);
+  // console.log(months.toString());
 
   // Personal Problems
   // Taking multiple inputs and turning htem into strings
-  let numbers = parseInt(prompt("Please enter the numbers"));
-  console.log(numbers);
+  // let numbers = parseInt(prompt("Please enter the numbers"));
+  // console.log(numbers);
 
-  let data = [];
-  console.log(data);
+  // let data = [];
+  // console.log(data);
 
-  while (numbers > 0) {
-    data.push(Number(prompt("Array elements please")));
-    numbers -= 1;
-  }
+  // while (numbers > 0) {
+  //   data.push(Number(prompt("Array elements please")));
+  //   numbers -= 1;
+  // }
 
-  console.log(data);
+  // console.log(data);
 
-  const data2 = [1111, 1234, 1235];
+  // const data2 = [1111, 1234, 1235];
 
   // -END
 };

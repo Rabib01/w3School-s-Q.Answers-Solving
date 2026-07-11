@@ -1,0 +1,7 @@
+if you want to see the mutated array you need to save it first otherwise splice retruns the part
+that was removed
+
+const arr = string.toLowerCase().split("");
+
+console.log(arr.splice(4, 6, "script")); // removed elements
+console.log(arr);                        // mutated array
