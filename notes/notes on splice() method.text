@@ -1,0 +1,44 @@
+if you want to see the mutated array you need to save it first otherwise splice retruns the part
+that was removed
+
+const arr = string.toLowerCase().split("");
+
+console.log(arr.splice(4, 6, "script")); // removed elements
+console.log(arr);                        // mutated array
+
+
+Great insight into splice() method
+  const scriptRemover = function (string) {
+
+    const scriptChecker = string
+      .split("")
+      .splice(4, 6)
+      .join("")
+      .toLowerCase()
+      .includes("script");
+
+    if (scriptChecker) {
+      const temp = string.split("");
+      const arr = temp.splice(4, 6);
+      const newString = temp.join("");
+      console.log(newString);
+    } else {
+      console.log(string);
+    }
+
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+wayback machine alternative should w3Resources ever be down like it was today at 11th July 2026
+https://web.archive.org/web/20260304150153/https://www.w3resource.com/javascript-exercises/javascript-basic-exercises.php

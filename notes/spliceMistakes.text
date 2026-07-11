@@ -1,0 +1,33 @@
+Here are the misconceptions you were running into with splice():
+
+You expected splice() to return the mutated array.
+❌ It doesn't.
+✅ It returns an array containing the removed elements.
+You thought assigning the result of splice() would give you the modified array.
+
+You wrote:
+
+const arr = string.split("").splice(4, 6, "script");
+arr becomes the removed elements, not the modified array.
+You assumed the original string was being mutated.
+Strings in JavaScript are immutable.
+split("") creates a new array, and splice() mutates that array only.
+You were chaining methods and losing access to the mutated array.
+
+When you do:
+
+string.split("").splice(...)
+
+the temporary array is mutated, but you never keep a reference to it.
+
+You interpreted the third argument of splice() as something that affects the return value.
+The third argument ("script") is inserted into the mutated array.
+It is not included in what splice() returns.
+You expected console.log(splice(...)) to show the modified array.
+It shows the return value of splice() (the removed elements), not the array after mutation.
+You overlooked that many array methods mutate the array but return something else.
+splice() → returns removed elements.
+push() → returns the new length.
+pop() → returns the removed element.
+shift() → returns the removed first element.
+unshift() → returns the new length.
