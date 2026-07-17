@@ -522,16 +522,28 @@ console.log("hi");
   const stringModifierBasedOnLength = function (string) {
     const split = string.split("");
     // console.log(split.length);
+    // console.log(split);
     if (split.length >= 3) {
+      const remainingPart = split.splice(3, split.length);
+      return split.join("").toLowerCase().concat(remainingPart.join(""));
+    } else {
+      return string.toUpperCase();
     }
+
+    // could have also be done with slice. Generally more recommended to use to not modify the origina array
+    // const firstThree = split.slice(0, 3);
+    // const remainingPart = split.slice(3);
   };
 
   const string1 = "Hi";
-  const string2 = "Hello";
+  const string2 = "HELLo";
   const string3 = "Python";
   const string4 = "Cat";
 
-  stringModifierBasedOnLength(string1);
+  console.log(stringModifierBasedOnLength(string2));
+  console.log(stringModifierBasedOnLength(string1));
+  console.log(stringModifierBasedOnLength(string3));
+  console.log(stringModifierBasedOnLength(string4));
 
   // -END
 };
