@@ -533,6 +533,7 @@ console.log("hi");
     // could have also be done with slice. Generally more recommended to use to not modify the origina array
     // const firstThree = split.slice(0, 3);
     // const remainingPart = split.slice(3);
+    // could have also use slice on the sring itself instead of turning it into an array and then break it down
   };
 
   const string1 = "Hi";
@@ -545,6 +546,42 @@ console.log("hi");
   console.log(stringModifierBasedOnLength(string3));
   console.log(stringModifierBasedOnLength(string4));
 
+  console.log("");
+  console.log("");
+
+  //43. Check Rightmost Digits of Three Numbers
+  const number1 = 22;
+  const number2 = 33;
+  const number3 = 44;
+  const arra1 = [22, 23];
+  const arra2 = [24, 25];
+  const comby = [...arra1, ...arra2];
+  // console.log(comby);
+
+  const rightMostDigitChecker = function (num1, num2, num3) {
+    // console.log(num1, num2, num3);
+    const arr = [num1, num2, num3];
+    // console.log(arr);
+    let combined = [];
+    // console.log(combined);
+
+    arr.forEach((ele) => {
+      // console.log(`${ele}`.split("").pop());
+      const singleDigit = [Number(`${ele}`.split("").pop())].pop();
+      // console.log(singleDigitArray);
+      combined.push(singleDigit);
+    });
+    console.log(combined);
+    //`${num1}`.split("").pop()
+  };
+
+  rightMostDigitChecker(number1, number2, number3);
+
+  // 45
+
+  // 48
+
+  // 50 upwards
   // -END
 };
 
