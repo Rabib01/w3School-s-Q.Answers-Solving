@@ -390,7 +390,6 @@ console.log("hi");
 
   characterAdderToFrontAndBack("The quick brown fox jumped over the lazy dog");
   
-  */ const init = function () {
   //Q;21 - Needs to be done again
   const pyAdderFunction = function (string) {
     const stringToBeConcatenated = "py";
@@ -437,7 +436,7 @@ console.log("hi");
   javaStarterChecketFunction("The quick brown fox jumps over the lazy dog");
   console.log("");
   console.log("");
-
+  
   //28. Check if Two Integers are in Range 50?99
   const rangeFinder = function (num1, num2) {
     console.log(num1, num2);
@@ -470,10 +469,10 @@ console.log("hi");
       .toLowerCase()
       .includes("script");
 
-    // const temp = string.toLowerCase().split("");
+      // const temp = string.toLowerCase().split("");
     // const arr = temp.splice(4, 6);
     // console.log(temp, arr);
-
+    
     // .splice(4, 6, "script") is removving s c r i p t and replacing s with script
     // .splice(4, 6) is removing it altogether
 
@@ -487,9 +486,9 @@ console.log("hi");
     }
 
     // else {
-    //   console.log(`no`);
-    // }
-  };
+      //   console.log(`no`);
+      // }
+    };
   scriptRemover("The Scriptquick brown fox jumps over the lazy dog");
   scriptRemover("The Scrquick brown fox jumps over the lazy dog");
   scriptRemover("The quicSaSk brown fox jumps over the lazy dog");
@@ -500,12 +499,12 @@ console.log("hi");
   // const months = ["Jan", "March", "April", "June"];
   // months.splice(0, 1);
   // console.log(months.toString());
-
+  
   // Personal Problems
   // Taking multiple inputs and turning htem into strings
   // let numbers = parseInt(prompt("Please enter the numbers"));
   // console.log(numbers);
-
+  
   // let data = [];
   // console.log(data);
 
@@ -517,6 +516,22 @@ console.log("hi");
   // console.log(data);
 
   // const data2 = [1111, 1234, 1235];
+  
+  */ const init = function () {
+  // Modify String Based on Length (First 3 Lowercase/Uppercase)
+  const stringModifierBasedOnLength = function (string) {
+    const split = string.split("");
+    // console.log(split.length);
+    if (split.length >= 3) {
+    }
+  };
+
+  const string1 = "Hi";
+  const string2 = "Hello";
+  const string3 = "Python";
+  const string4 = "Cat";
+
+  stringModifierBasedOnLength(string1);
 
   // -END
 };
