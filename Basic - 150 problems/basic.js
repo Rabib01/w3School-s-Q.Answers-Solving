@@ -553,10 +553,17 @@ console.log("hi");
   const number1 = 22;
   const number2 = 33;
   const number3 = 44;
-  const arra1 = [22, 23];
-  const arra2 = [24, 25];
-  const comby = [...arra1, ...arra2];
-  // console.log(comby);
+
+  const number4 = 22;
+  const number5 = 32;
+  const number6 = 42;
+
+  let brokenarra = [];
+  // let brokenarra2 = [];
+  // const arra1 = [22, 23];
+  // const arra2 = [24, 25];
+  // const comby = [...arra1, ...arra2];
+  // // console.log(comby);
 
   const rightMostDigitChecker = function (num1, num2, num3) {
     // console.log(num1, num2, num3);
@@ -566,18 +573,94 @@ console.log("hi");
     // console.log(combined);
 
     arr.forEach((ele) => {
-      // console.log(`${ele}`.split("").pop());
       const singleDigit = [Number(`${ele}`.split("").pop())].pop();
-      // console.log(singleDigitArray);
       combined.push(singleDigit);
     });
-    console.log(combined);
-    //`${num1}`.split("").pop()
+    // console.log(combined);
   };
 
-  rightMostDigitChecker(number1, number2, number3);
+  const rightMostDigitChecker2 = function (...numbers) {
+    numbers.forEach((element) => {
+      const lastDigit = element.toString().split("").map(Number).pop();
+      brokenarra.push(lastDigit);
+    });
+    return brokenarra;
 
-  // 45
+    // // can't fucking do this because push returns the leanght of the array
+    // numbers.forEach((element) => {
+    //   console.log(
+    //     brokenarra.push(element.toString().split("").map(Number).pop()),
+    //   );
+    // });
+    // // note end
+  };
+
+  const whatToDoForSameLastDigit = function (lastDigitArray) {
+    const allEqual = new Set(brokenarra).size === 1;
+    if (!allEqual) {
+      console.log(false);
+    } else {
+      console.log(true);
+    }
+  };
+  rightMostDigitChecker(number1, number2, number3);
+  // rightMostDigitChecker2(number1, number2, number3);
+  rightMostDigitChecker2(number4, number5, number6);
+  whatToDoForSameLastDigit(brokenarra);
+  // to convert an
+
+  //const arr = [5, 5, 5];
+  // const allEqual = arr.every(val => val === arr[0]); // true
+  // const arr = [5, 5, 5];
+  // const allEqual = new Set(arr).size === 1; // true
+
+  // Array.from(String(numb1), Number); can use this to turn a number into an array of indivudual elements
+  // console.log(numb1.toString().split("").map(Number)) ; -> Can also use this to turn an array into a number
+
+  // const numb1 = 25;
+
+  // const arra1 = Array.from(String(numb1), Number);
+  // console.log(numb1.toString().split("").map(Number));
+
+  // console.log(arra1);
+
+  // 45 Check if Integer is 15, or Sum/Difference is 15
+  console.log("");
+  console.log("");
+  const interChecker = function (...numbers) {
+    // console.log(numbers);
+
+    // condition 1 : check if either number = 15
+    const either15 = numbers.some((value) => value === 15);
+    // console.log(either15);
+
+    //condition 2 : check if their sum is 15
+    const sumResult = numbers.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue;
+    }, 0);
+    // console.log(sumResult);
+
+    //condition 3 : if difference between two numbers is 15
+    const diffResult = numbers
+      .sort((a, b) => b - a)
+      .reduce((acc, currVal) => {
+        return acc - currVal;
+      });
+    // console.log(diffResult);
+
+    // if (either15 || sumResult || diffResult) not working because false || true || true falsy values and truthy values sumResult and diffResult are both truthy
+
+    if (either15 || sumResult === 15 || diffResult === 15) {
+      console.log(true);
+    } else {
+      console.log(false);
+    }
+  };
+
+  interChecker(5, 18);
+  interChecker(15, 18);
+  interChecker(10, 5);
+  interChecker(25, 10);
 
   // 48
 
