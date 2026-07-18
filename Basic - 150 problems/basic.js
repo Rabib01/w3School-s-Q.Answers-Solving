@@ -662,8 +662,86 @@ console.log("hi");
   interChecker(10, 5);
   interChecker(25, 10);
 
-  // 48
+  console.log("");
+  console.log("");
 
+  //47. Check if Only One Integer is Multiple of 7 or 11
+  const multipleChecker = function (...numbers) {
+    // console.log(numbers);
+    const multiples = numbers.filter((num) => num % 7 === 0 || num % 11 === 0);
+    console.log(multiples);
+    multiples.forEach((ele) =>
+      console.log(
+        `The numbers that are a multiple of either 7 or 11 are : `,
+        ele,
+      ),
+    );
+    console.log("");
+    console.log("");
+  };
+
+  multipleChecker(21, 55);
+  multipleChecker(21, 55, 33, 99, 21, 56, 84, 13, 25, 60);
+  console.log("");
+  console.log("");
+
+  const sentence = "The quick brown fox jumps over the lazy dog";
+
+  // 48 Reverse a Given String
+
+  const reverseString = function (string) {
+    console.log(string);
+    const reversed = string.split("").toReversed().join("");
+    console.log(string, "+", reversed);
+    console.log("");
+    console.log("");
+  };
+
+  reverseString(sentence);
+  //!!  //
+  // const letter = "A";
+  // console.log(letter.codePointAt(0)); // 65
+  // console.log(letter.codePointAt(0).toString(16)); // "41" (hexadecimal)
+
+  // const letter = "A";
+  // const unicode = "U+" + letter.codePointAt(0).toString(16).toUpperCase().padStart(4, "0");
+  // console.log(unicode); // U+0041
+
+  // 49. Replace each string with thenext alphabet letter
+
+  const nextCharacterStringModifier = function (string) {
+    const splittedString = string.split("");
+    // console.log(splittedString);
+
+    //.toString(16).toUpperCase().padStart(4, "0"),
+    // "U+"
+    //.codePointAt(idx)
+
+    // To convert to unicode
+
+    // splittedString.forEach((element) => {
+    //   console.log(
+    //     "U+" +
+    //       element.codePointAt(0).toString(16).toUpperCase().padStart(4, "0"),
+    //   );
+    // });
+
+    // one more letter
+    const newSentenceArra = [];
+    splittedString.forEach((el) => {
+      const newEle = (el.codePointAt(0) + 1).toString();
+      newSentenceArra.push(String.fromCodePoint(newEle).split(""));
+    });
+
+    const newSentence = newSentenceArra.flat().join("").replaceAll("!", " ");
+
+    // console.log("");
+    // console.log("");
+
+    console.log(newSentence);
+  };
+
+  nextCharacterStringModifier(sentence);
   // 50 upwards
   // -END
 };
