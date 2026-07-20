@@ -739,10 +739,50 @@ console.log("hi");
     // console.log("");
 
     console.log(newSentence);
+    console.log("");
+    console.log("");
   };
 
   nextCharacterStringModifier(sentence);
-  // 50 upwards
+
+  // 50 upwards : Captialize the first letters of each word in a string:
+  const firstLetterCapitalizer = function (string) {
+    const splittedString = string.split("");
+    let letterAfterSpaceCharsArray = [];
+    console.log(splittedString);
+    splittedString.filter((element, idx) => {
+      if (element == " ") {
+        console.log("Found You");
+        letterAfterSpaceCharsArray.push(idx + 1);
+      }
+    });
+    console.log(letterAfterSpaceCharsArray);
+    console.log(splittedString.at(4).toUpperCase());
+    // console.log(splittedString.toUpperCaser()); Wont work
+
+    console.log("");
+    console.log("");
+    console.log("");
+
+    // splittedString.forEach((element, idx, arr) => {
+    // console.log(element.toUpperCase());
+    // const indexToBeCapitalized = letterAfterSpaceCharsArray.shift();
+    // console.log(indexToBeCapitalized);
+    // console.log(arr[indexToBeCapitalized].toUpperCase());
+    // });
+
+    const deepClone = structuredClone(splittedString);
+    deepClone.splice(4, 1, "Q");
+    console.log(deepClone);
+
+    for (let i = 0; i < letterAfterSpaceCharsArray.length; i++) {
+      const upperCased = splittedString.at(letterAfterSpaceCharsArray[i]);
+      console.log(upperCased);
+    }
+  };
+
+  firstLetterCapitalizer(sentence);
+
   // -END
 };
 
