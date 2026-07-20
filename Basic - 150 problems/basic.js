@@ -776,12 +776,129 @@ console.log("hi");
     console.log(deepClone);
 
     for (let i = 0; i < letterAfterSpaceCharsArray.length; i++) {
-      const upperCased = splittedString.at(letterAfterSpaceCharsArray[i]);
+      // const upperCased = splittedString
+      //   .at(letterAfterSpaceCharsArray[i])
+      //   .split("");
+
+      const upperCased = splittedString.splice(
+        letterAfterSpaceCharsArray[i],
+        1,
+        splittedString.at(letterAfterSpaceCharsArray[i]).toUpperCase(),
+      );
       console.log(upperCased);
     }
+    console.log(splittedString);
   };
 
   firstLetterCapitalizer(sentence);
+  console.log("");
+  console.log("");
+  console.log("");
+  console.log("");
+  console.log("");
+  console.log("");
+  // console.log(sentence);
+
+  //50 but done cleanly
+
+  const sentence2 = "the quick brown fox jumps over the lazy dog";
+  const dumbWayToCapitalizeTheFirstCharacterOfAString = function (string) {
+    const splittedString = string.split("");
+    let letterAfterSpaceCharsArray = [];
+    console.log(splittedString);
+
+    splittedString.forEach((ele, idx) => {
+      if (ele === " ") {
+        letterAfterSpaceCharsArray.push(idx + 1);
+      }
+    });
+    // accounting if the first letter is small
+    letterAfterSpaceCharsArray.unshift(0);
+    console.log(letterAfterSpaceCharsArray);
+
+    for (let i = 0; i < letterAfterSpaceCharsArray.length; i++) {
+      splittedString.splice(
+        letterAfterSpaceCharsArray[i],
+        1,
+        splittedString.at(letterAfterSpaceCharsArray[i]).toUpperCase(),
+      );
+    }
+    const newSentence = splittedString.join("");
+    console.log(newSentence);
+  };
+
+  dumbWayToCapitalizeTheFirstCharacterOfAString(sentence2);
+
+  const lessDumberWayToCapitalizeFirstCharacterOfAString = function (string) {
+    const splittedString = string.split("");
+    let letterAfterSpaceCharsArray = [];
+    console.log(splittedString);
+
+    splittedString.forEach((ele, idx) => {
+      if (ele === " ") {
+        splittedString[idx + 1] = splittedString[idx + 1].toUpperCase();
+      }
+    });
+    splittedString.splice(0, 1, splittedString[0].toUpperCase());
+    console.log("");
+    console.log("");
+    console.log(splittedString);
+  };
+
+  lessDumberWayToCapitalizeFirstCharacterOfAString(sentence2);
+
+  const evenLessDumberWayToCapitalizeFirstCharacterOfAString = function (
+    string,
+  ) {
+    const splittedString = string.split("");
+    if (splittedString.length > 0) {
+      splittedString.forEach((ele, idx) => {
+        // accounting for last index; when array reaches the last element, idx + 1 becomes undefined and so undeined.toUpperCase() should throw an error.
+        if (ele === " " && idx + 1 < splittedString.length) {
+          splittedString[idx + 1] = splittedString[idx + 1].toUpperCase();
+        }
+      });
+
+      // Dont need splice to make the first character into capitalized
+      // could've instead done ::
+      // splittedString[0] = splittedString[0].upperCase();
+      // but will keepthis because this is what i came up with
+
+      splittedString.splice(0, 1, splittedString[0].toUpperCase());
+      // could have also used replace, anyhow
+
+      console.log("");
+      console.log("");
+      console.log(splittedString.join(""));
+    } else {
+      console.log("What the fuck am I supposed to capitalize.");
+      console.log("There is nothing there");
+    }
+  };
+
+  evenLessDumberWayToCapitalizeFirstCharacterOfAString(sentence2);
+  console.log("");
+  console.log("");
+  evenLessDumberWayToCapitalizeFirstCharacterOfAString("");
+  console.log("");
+  console.log("");
+
+  const properWayToCapitalize = function (str) {
+    return str
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
+
+  console.log(
+    properWayToCapitalize("the quick brown fox jumps over the lazy dog"),
+  );
+  // The Quick Brown Fox Jumps Over The Lazy Dog
+
+  // ("javascript");
+  // J a v a s c r i p t
+  // 0 1 2 3 4 5 6 7 8 9
+  // ("avascript") is returned by slice
 
   // -END
 };
