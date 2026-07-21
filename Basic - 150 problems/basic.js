@@ -895,10 +895,79 @@ console.log("hi");
   );
   // The Quick Brown Fox Jumps Over The Lazy Dog
 
+  console.log("");
+  console.log("");
+
   // ("javascript");
   // J a v a s c r i p t
   // 0 1 2 3 4 5 6 7 8 9
   // ("avascript") is returned by slice
+
+  //51 Converting a number into hours and minutes
+
+  const promptForTheNumberFunction = function () {
+    return prompt(
+      "Will the bumber be in munites or seconds ? \n Enter 1 for seconds \n Enter 2 for minutes ",
+    );
+  };
+
+  const convertingNumbersIntoHoursAndMinutes = function (seconds) {
+    // const option = +promptForTheNumberFunction();
+    const option = 1;
+
+    if (option === 1) {
+      const actualHours = seconds / 3600;
+      const hoursRounded = Math.floor(seconds / 3600);
+      const remainingHours = actualHours - hoursRounded;
+      const actualMinutes = remainingHours * 60;
+      const minutesRounded = Math.floor(actualMinutes);
+      const remainingMinutes = actualMinutes - minutesRounded;
+      const secondsRounded = +(remainingMinutes * 60).toFixed(0);
+      // 1 Hours : 23 minutes : 20 : seconds
+
+      return `${hoursRounded} Hours : ${minutesRounded} minutes : ${secondsRounded} seconds`;
+    }
+
+    if (option === 2) {
+      const actualMinutes = seconds / 60;
+      const minutesRounded = Math.floor(actualMinutes);
+      const remainingMinutes = actualMinutes - minutesRounded;
+      const secondsRounded = +(remainingMinutes * 60).toFixed(0);
+      return `${minutesRounded} minutes : ${secondsRounded} seconds`;
+    } else {
+      // console.log("I see we are not interested in any time conversions today");
+    }
+  };
+
+  console.log(convertingNumbersIntoHoursAndMinutes(5000));
+  console.log(convertingNumbersIntoHoursAndMinutes(3000));
+  console.log(convertingNumbersIntoHoursAndMinutes(10000));
+  console.log("");
+  console.log("");
+
+  const lessDumbVersionForHoursAndMinutes = function (minutes) {
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+
+    return `${hours} hour(s) ${remainingMinutes} minute(s)`;
+  };
+
+  const sameShitButForSeconds = function (seconds) {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+
+    return `${hours} hour(s) ${minutes} minute(s)`;
+  };
+
+  //52. Sort letters alphabetically in a string :
+  const whatADumbFuckingQuestion = function (string) {
+    // everything does not have to be so damn complicated
+    return string.toLowerCase().split("").sort().join("").trim();
+  };
+  console.log(whatADumbFuckingQuestion(sentence));
+  //.sort() does not exist on String.prototype()
+
+  //53. Check 'a' and 'b' Separated by exactly 3 places
 
   // -END
 };
