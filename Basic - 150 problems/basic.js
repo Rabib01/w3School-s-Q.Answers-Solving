@@ -987,29 +987,124 @@ console.log("hi");
       if (ele === "b") {
         arrayOfBs.push(idx);
       }
-      return (arrayOfAs, arrayOfBs);
     });
 
     let result = [];
 
     // I need 2 for loops
+    // This creates a timecomplexity of O(n^2) and so for 1000s of a's and 1000s of b's this version would be very slow
+
     for (let i = 0; i < arrayOfBs.length; i++) {
       for (let ii = 0; ii < arrayOfAs.length; ii++) {
         result.push(Math.abs(arrayOfBs[i] - arrayOfAs[ii]));
       }
     }
 
-    let present = true;
+    // let present = true; don't need this fucker
     if (result.includes(4)) {
-      return (present = true);
+      return true;
     } else {
-      return (present = false);
+      return false;
     }
 
-    return present;
+    // return present; -> Unreachable code block
+  };
+
+  const aAndBCheckerV2 = function (string) {
+    let arrayOfAs = [];
+    let arrayOfBs = [];
+
+    const splittedString = string.split("");
+
+    splittedString.forEach((ele, idx) => {
+      if (ele === "a") {
+        arrayOfAs.push(idx);
+      }
+      if (ele === "b") {
+        arrayOfBs.push(idx);
+      }
+    });
+
+    // let result = []; // Also do not need this !! Could have directly checked inside the 2 for loops
+
+    // I need 2 for loops
+    // This creates a timecomplexity of O(n^2) and so for 1000s of a's and 1000s of b's this version would be very slow
+
+    for (let i = 0; i < arrayOfBs.length; i++) {
+      for (let ii = 0; ii < arrayOfAs.length; ii++) {
+        if (Math.abs(arrayOfBs[i] - arrayOfAs[ii]) === 4) {
+          return true;
+        } else {
+        }
+      }
+    }
+    return false;
+  };
+  const aAndBCheckerV3 = function (string) {
+    // Least stupid version ::
+
+    const aAndBChecker = function (string) {
+      for (let i = 0; i < string.length; i++) {
+        if (
+          (string[i] === "a" && string[i + 4] === "b") ||
+          (string[i] === "b" && string[i + 4] === "a")
+        ) {
+          return true;
+        }
+      }
+
+      return false;
+    };
   };
 
   console.log(aAndBChecker(sentence3));
+  console.log(aAndBCheckerV2(sentence3));
+  console.log("");
+  console.log("");
+
+  const vowelChecker = function (string) {
+    console.log(string);
+    const splittedString = string.split("");
+    let vowelCounter = 0;
+    splittedString.forEach((ele) => {
+      if (
+        ele === "a" ||
+        ele === "e" ||
+        ele === "i" ||
+        ele === "o" ||
+        ele === "u"
+      ) {
+        vowelCounter++;
+      }
+    });
+    return vowelCounter;
+  };
+  console.log(vowelChecker(sentence));
+
+  const vowelCheckerV2 = function (string) {
+    // Same time complexity as before O(n)
+    // Space complexity reduced to o(1) as i do not need to created splittedString
+    let vowelCounter = 0;
+
+    for (let i = 0; i < string.length; i++) {
+      if (
+        string[i] === "a" ||
+        string[i] === "e" ||
+        string[i] === "i" ||
+        string[i] === "o" ||
+        string[i] === "u"
+      ) {
+        vowelCounter++;
+      }
+    }
+
+    return vowelCounter;
+  };
+  console.log(vowelCheckerV2(sentence));
+  console.log("");
+  console.log("");
+
+  const sentence5 = "Peter put the pizza on the plate";
 
   // new Challenge = [3, 4, 5, NaN, NaN] remove the NaNs from the string -> similar to findIndex() and splice()
   // tbc : Start from your own function and capitalize the first words of each string !!

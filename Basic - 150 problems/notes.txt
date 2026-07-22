@@ -1,3 +1,5 @@
+--------------------------------------------------------------------
+
 Easy way to remember
 at(index)
 Index
@@ -19,3 +21,93 @@ indexOf() gives the specific index of a character
 | `find()`      | The element      | ✅ For objects or custom conditions |
 | `findIndex()` | The index        | ✅ For objects or custom conditions |
 | `some()`      | `true` / `false` | ✅ For custom conditions            |
+
+
+
+function test() {
+  let present = true;
+
+  if (true) {
+    return present;
+  }
+
+  return false;
+}
+
+console.log(test()); // true
+
+return will always be return expression and not return expressions 
+
+----------------------------------------------------------------------
+why putting the else statement inside of the for loop is stupid 
+for (let i = 0; i < arrayOfBs.length; i++) {
+  for (let j = 0; j < arrayOfAs.length; j++) {
+    if (Math.abs(arrayOfBs[i] - arrayOfAs[j]) === 4) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+
+Now what happens?
+
+First comparison:
+
+a = 1
+b = 3
+distance = 2
+
+Not 4.
+
+So the else executes immediately:
+
+return false;
+
+The function stops.
+
+It never even checks
+
+8 and 12
+
+which would have returned true.
+
+So this version is incorrect.
+----------------------------------------------------------------------------------------
+
+
+this is not the proper way to do this :: 
+Another common mistake
+
+People often write:
+
+if (char === "a" || "e") {
+  // ...
+}
+
+This also doesn't work.
+
+JavaScript reads it as:
+
+if ((char === "a") || ("e")) {
+  ...
+}
+
+Since "e" is a truthy value, the condition is always true.  
+as the or operator will return true for the first truthy value 
+
+const vowels = "a" || "e" || "i" || "o" || "u";
+console.log(vowels);
+Will give a as "a" is the first truthy value 
+
+Do this instead
+if (
+  char === "a" ||
+  char === "e" ||
+  char === "i" ||
+  char === "o" ||
+  char === "u"
+) {
+  // vowel
+}
+--------------------------------------------------------------------
