@@ -1,0 +1,21 @@
+Easy way to remember
+at(index)
+Index
+  ↓
+Character
+indexOf(value)
+Character
+   ↓
+Index 
+
+they are polar opposites
+at() gives the character at a specific index 
+indexOf() gives the specific index of a character
+
+| Method        | Returns          | Recommended?                       |
+| ------------- | ---------------- | ---------------------------------- |
+| `includes(4)` | `true` / `false` | ✅ Yes (most readable)              |
+| `indexOf(4)`  | Index or `-1`    | ✅ If you need the position         |
+| `find()`      | The element      | ✅ For objects or custom conditions |
+| `findIndex()` | The index        | ✅ For objects or custom conditions |
+| `some()`      | `true` / `false` | ✅ For custom conditions            |

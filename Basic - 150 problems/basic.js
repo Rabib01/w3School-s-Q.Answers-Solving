@@ -967,8 +967,52 @@ console.log("hi");
   console.log(whatADumbFuckingQuestion(sentence));
   //.sort() does not exist on String.prototype()
 
-  //53. Check 'a' and 'b' Separated by exactly 3 places
+  console.log("");
+  console.log("");
 
+  //53. Check 'a' and 'b' Separated by exactly 3
+  // substracting by each element does not work becuase what if the first match is for b at first indexs and a at second index
+  const sentence3 = "The auick aownb fox jumps over the lazy bog";
+  const sentence4 = "The quick aownb fox jumps over the lazy dog";
+  const aAndBChecker = function (string) {
+    let arrayOfAs = [];
+    let arrayOfBs = [];
+
+    const splittedString = string.split("");
+
+    splittedString.forEach((ele, idx) => {
+      if (ele === "a") {
+        arrayOfAs.push(idx);
+      }
+      if (ele === "b") {
+        arrayOfBs.push(idx);
+      }
+      return (arrayOfAs, arrayOfBs);
+    });
+
+    let result = [];
+
+    // I need 2 for loops
+    for (let i = 0; i < arrayOfBs.length; i++) {
+      for (let ii = 0; ii < arrayOfAs.length; ii++) {
+        result.push(Math.abs(arrayOfBs[i] - arrayOfAs[ii]));
+      }
+    }
+
+    let present = true;
+    if (result.includes(4)) {
+      return (present = true);
+    } else {
+      return (present = false);
+    }
+
+    return present;
+  };
+
+  console.log(aAndBChecker(sentence3));
+
+  // new Challenge = [3, 4, 5, NaN, NaN] remove the NaNs from the string -> similar to findIndex() and splice()
+  // tbc : Start from your own function and capitalize the first words of each string !!
   // -END
 };
 
