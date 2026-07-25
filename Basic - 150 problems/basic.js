@@ -1079,11 +1079,16 @@ console.log("hi");
     });
     return vowelCounter;
   };
-  console.log(vowelChecker(sentence));
+  console.log(
+    `There are --${vowelChecker(sentence)}-- vowels in the sentence : \n${sentence}`,
+  );
+  console.log("");
+  console.log("");
 
   const vowelCheckerV2 = function (string) {
     // Same time complexity as before O(n)
     // Space complexity reduced to o(1) as i do not need to created splittedString
+    // fuck this thing, i'll learn about optimization later
     let vowelCounter = 0;
 
     for (let i = 0; i < string.length; i++) {
@@ -1100,11 +1105,48 @@ console.log("hi");
 
     return vowelCounter;
   };
-  console.log(vowelCheckerV2(sentence));
+  console.log(
+    `There are --${vowelCheckerV2(sentence)}-- vowels in the sentence : \n${sentence}`,
+  );
   console.log("");
   console.log("");
 
   const sentence5 = "Peter put the pizza on the plate";
+  console.log("");
+  console.log("");
+
+  // 56. Divide the numbers and format properly with commas ::
+  const numberFormatter = function (number) {
+    // console.log(number);
+
+    const wtf = Array.from(String(number), Number);
+    const wtf2 = number.toString().split("").map(Number);
+    // wtf2.splice(3, 0, ",");
+    // console.log(wtf2);
+    for (let i = 0; i < wtf2.length; i++) {
+      wtf2.splice(i, 1, ",");
+    }
+    console.log(wtf2);
+
+    // console.log(wtf.length);
+    // toLocaleString() will solve the problem directly
+
+    // for (let i = 0; i < wtf.length; i++) {
+    //   if (wtf.length <= 3) {
+    //     return +wtf.join("");
+    //   } else {
+    //   }
+    //   // wtf.splice(wtf[i], 0, ",");
+    // }
+    console.log("");
+    console.log("");
+  };
+
+  // console.log(numberFormatter(123));
+  console.log(numberFormatter(1234));
+  const randNum = [1, 2, 3, 4];
+  randNum.splice(1, 0, ",");
+  console.log(randNum);
 
   // new Challenge = [3, 4, 5, NaN, NaN] remove the NaNs from the string -> similar to findIndex() and splice()
   // tbc : Start from your own function and capitalize the first words of each string !!
@@ -1112,3 +1154,19 @@ console.log("hi");
 };
 
 init();
+// console.log(randNum.splice(1, 0, " ,")); -> it returns the removed element and not the original array
+
+// const arra1 = Array.from(String(numb1), Number);
+// console.log(numb1.toString().split("").map(Number));
+
+/**
+ * The slice() method of Array instances returns a shallow copy of a portion of an array into a new array object selected from start to end (end not included) where start and end represent the index of items in that array. The original array will not be modified.
+ *
+ * const animals = ["ant", "bison", "camel", "duck", "elephant"];
+ * 
+ * console.log(animals.slice(2));
+ * // Expected output: Array ["camel", "duck", "elephant"]
+
+ * console.log(animals.slice(2, 4));
+ * // Expected output: Array ["camel", "duck"]
+ */
