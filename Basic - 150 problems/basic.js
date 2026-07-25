@@ -1121,12 +1121,19 @@ console.log("hi");
 
     const wtf = Array.from(String(number), Number);
     const wtf2 = number.toString().split("").map(Number);
-    // wtf2.splice(3, 0, ",");
-    // console.log(wtf2);
-    for (let i = 0; i < wtf2.length; i++) {
-      wtf2.splice(i, 1, ",");
-    }
-    console.log(wtf2);
+    const wtf5 = Array.from(String(number), Number);
+
+    // wtf2.splice(2, 0, wtf3);
+    // console.log(wtf2.flat().join(""));
+    console.log("");
+    console.log("");
+    const length = wtf5.length;
+    const numberOfCommasNeeded = Math.floor(length / 3);
+    console.log(length, numberOfCommasNeeded);
+
+    // for (let i = 1; i < length; i++) {
+    //   // wtf5.splice(-i * 3, 0, ",");
+    // }
 
     // console.log(wtf.length);
     // toLocaleString() will solve the problem directly
@@ -1138,21 +1145,20 @@ console.log("hi");
     //   }
     //   // wtf.splice(wtf[i], 0, ",");
     // }
+
     console.log("");
     console.log("");
   };
 
   // console.log(numberFormatter(123));
-  console.log(numberFormatter(1234));
-  const randNum = [1, 2, 3, 4];
-  randNum.splice(1, 0, ",");
-  console.log(randNum);
-
-  // new Challenge = [3, 4, 5, NaN, NaN] remove the NaNs from the string -> similar to findIndex() and splice()
-  // tbc : Start from your own function and capitalize the first words of each string !!
-  // -END
+  // numberFormatter(1234);
+  numberFormatter(111);
+  // t.b.c : Should the increment depend on the number of digits placed or the number of commas inserted ??
 };
 
+// new Challenge = [3, 4, 5, NaN, NaN] remove the NaNs from the string -> similar to findIndex() and splice()
+// tbc : Start from your own function and capitalize the first words of each string !!
+// -END
 init();
 // console.log(randNum.splice(1, 0, " ,")); -> it returns the removed element and not the original array
 
