@@ -1116,24 +1116,44 @@ console.log("hi");
   console.log("");
 
   // 56. Divide the numbers and format properly with commas ::
+  const ariithmeticExpression = function (n) {
+    return -(3 + (n - 1) * 4);
+  };
+
   const numberFormatter = function (number) {
     // console.log(number);
 
     const wtf = Array.from(String(number), Number);
     const wtf2 = number.toString().split("").map(Number);
-    const wtf5 = Array.from(String(number), Number);
+    const wtf3 = Array.from(String(number), Number);
 
-    // wtf2.splice(2, 0, wtf3);
-    // console.log(wtf2.flat().join(""));
-    console.log("");
-    console.log("");
-    const length = wtf5.length;
-    const numberOfCommasNeeded = Math.floor(length / 3);
-    console.log(length, numberOfCommasNeeded);
+    console.log(wtf);
+    wtf.splice(-3, 0, ",");
+    console.log(wtf);
+    wtf.splice(-7, 0, ",");
+    console.log(wtf);
+    wtf.splice(-11, 0, ",");
+    console.log(wtf);
+    wtf.splice(-15, 0, ",");
+    console.log(wtf);
 
-    // for (let i = 1; i < length; i++) {
-    //   // wtf5.splice(-i * 3, 0, ",");
-    // }
+    let numbToBeCalculated = 4;
+    console.log(ariithmeticExpression(numbToBeCalculated));
+
+    // this is following an arithmetic sequence
+
+    const length = wtf2.length;
+    console.log(`The length of the array is : ${length}`);
+
+    // before this i would need to determine how many times
+    // my loop runs for example how many commas i need
+    // instead of running the loop as many times as the
+    // length of the array
+
+    // How would i determine how many times i need the commas
+    for (let i = 1; i < length; i++) {
+      // wtf5.splice(-i * 3, 0, ",");
+    }
 
     // console.log(wtf.length);
     // toLocaleString() will solve the problem directly
@@ -1150,9 +1170,7 @@ console.log("hi");
     console.log("");
   };
 
-  // console.log(numberFormatter(123));
-  // numberFormatter(1234);
-  numberFormatter(111);
+  numberFormatter(111111111111);
   // t.b.c : Should the increment depend on the number of digits placed or the number of commas inserted ??
 };
 

@@ -111,3 +111,168 @@ if (
   // vowel
 }
 --------------------------------------------------------------------
+
+Differene between a value an an expression
+why does it work like this, explain in details on why i cant change the value for n ? 
+
+This is one of the most important concepts in programming. The key is understanding the difference between a value and an expression.
+
+Let's go through it slowly.
+
+Step 1: You create n
+let n = 0;
+
+Memory now looks like this:
+
+n ───► 0
+Step 2: JavaScript sees this line
+let a = -(3 + (n - 1) * 4);
+
+You might think JavaScript stores:
+
+a ───► -(3 + (n - 1) * 4)
+
+It doesn't.
+
+Instead, JavaScript immediately evaluates the expression.
+
+It literally substitutes the current value of n.
+
+-(3 + (0 - 1) * 4)
+
+↓
+
+-(3 + (-1 * 4))
+
+↓
+
+-(3 - 4)
+
+↓
+
+-(-1)
+
+↓
+
+1
+
+Now memory looks like this:
+
+n ───► 0
+a ───► 1
+
+Notice that a stores only the final answer.
+
+It has forgotten how that answer was calculated.
+
+Step 3: You change n
+n = 3;
+
+Memory becomes
+
+n ───► 3
+a ───► 1
+
+Nothing tells JavaScript:
+
+"Hey, a depended on n, so recalculate it."
+
+JavaScript has no record of that dependency.
+
+Think of it like a calculator
+
+Imagine you type
+
+3 + 5
+
+The calculator shows
+
+8
+
+Now imagine you erase the 5 and write 10.
+
+Would the display magically become
+
+13
+
+No.
+
+You have to press = again.
+
+Variables work the same way.
+
+Another example
+let x = 5;
+let y = x;
+
+Memory:
+
+x ───► 5
+y ───► 5
+
+Now:
+
+x = 100;
+
+Memory:
+
+x ───► 100
+y ───► 5
+
+People sometimes expect
+
+y ───► 100
+
+But y doesn't "watch" x.
+
+It copied the value, not the variable.
+
+The important rule
+
+When JavaScript executes
+
+let a = expression;
+
+it does this:
+
+Evaluate the expression.
+Produce one value.
+Store that value in a.
+Forget the expression.
+
+So
+
+let a = n + 5;
+
+becomes something like
+
+// if n is 10
+let a = 15;
+
+After that, a has no connection to n.
+
+If you want a to always depend on n
+
+You need to calculate it every time:
+
+let n = 3;
+
+let a = -(3 + (n - 1) * 4);
+
+n = 5;
+
+a = -(3 + (n - 1) * 4);
+
+Or, even better, use a function:
+
+function arithmeticTerm(n) {
+  return -(3 + (n - 1) * 4);
+}
+
+console.log(arithmeticTerm(3)); // -11
+console.log(arithmeticTerm(5)); // -19
+
+Here, the expression is evaluated every time you call the function, so changing n changes the result.
+
+This behavior exists because JavaScript executes code line by line. Each assignment computes a value once at that moment. Variables are containers for values—they don't remember the formulas used to produce those values or automatically update when other variables change.
+--------------------------------
