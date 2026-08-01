@@ -1116,104 +1116,54 @@ console.log("hi");
   console.log("");
 
   // 56. Divide the numbers and format properly with commas ::
-
   // I did this because of the commas that come after 3 digits follow the pattern -3, -7, -11, -15/
   // took help from chatgpt and it said it was an arithmetic progression and hence the formula
-
-  const ariithmeticExpression = function (n) {
+  // This will later allow me to but this inside of a loop so that I can insert the commas in the respective positions
+  const arithmeticExpression = function (n) {
     return -(3 + (n - 1) * 4);
   };
 
-  const numberOfCommasNeeded = function (n) {
+  const numberOfCommasNeeded = function (n, array) {
     // divide and conquer
-    const constructedArray = Array.from(String(n), Number);
-    const constructedArrayLength = constructedArray.length;
-    const [first, ...others] = constructedArray;
-    // console.log(first, others);
-    console.log(constructedArray);
+    // const constructedArray = Array.from(String(n), Number); // use this only when i am working with the number itself
+    const constructedArray = array;
     let newArray = [];
 
-    const firstThree = constructedArray.slice(0, 3);
-    console.log(firstThree);
-
-    // did not think that I would be able to come up with this solution so fast
-    for (let i = 0; i < constructedArrayLength; i += 3) {
+    // did not think that I would be able to come up with this solution so fast // Also came up with this after debugging what ??
+    for (let i = 0; i < constructedArray.length; i += 3) {
       newArray.push(constructedArray.slice(i, i + 3));
+      newArray.push(",");
     }
-    console.log(newArray);
-
-    // one, 1, 2, 3 digits -> no commas
-
-    // if an array has n number of elements, how to create a 1d array and make them have 3 elements each
-
-    // 4,5,6 digits -> 1 commas
-
-    // 7,8,9 digits -> 2 commas
+    // Therefore the number of commas needed =
+    const numberOfCommas = newArray.filter((ele) => ele === ",").length;
+    return numberOfCommas;
   };
 
-  // numberOfCommasNeeded(111);
-  // numberOfCommasNeeded(1111);
-  // numberOfCommasNeeded(1111111);
-  numberOfCommasNeeded(1111111111);
+  // console.log(numberOfCommasNeeded(1111111111));
 
   const numberFormatter = function (number) {
-    // console.log(number);
+    const splittedNumber = number.toString().split("").map(Number);
+    const deepCloneOfArray = structuredClone(splittedNumber);
+    console.log(splittedNumber);
 
-    const wtf = Array.from(String(number), Number);
-    const wtf2 = number.toString().split("").map(Number);
-    const wtf3 = Array.from(String(number), Number);
+    const commaNumber = numberOfCommasNeeded(undefined, splittedNumber);
+    console.log(commaNumber);
 
-    console.log(wtf);
-    wtf.splice(-3, 0, ",");
-    console.log(wtf);
-    wtf.splice(-7, 0, ",");
-    console.log(wtf);
-    wtf.splice(-11, 0, ",");
-    console.log(wtf);
-    wtf.splice(-15, 0, ",");
-    console.log(wtf);
-
-    let numbToBeCalculated = 4;
-    console.log(ariithmeticExpression(numbToBeCalculated));
-
-    // this is following an arithmetic sequence
-
-    const length = wtf2.length;
-    console.log(`The length of the array is : ${length}`);
-
-    // before this i would need to determine how many times
-    // my loop runs for example how many commas i need
-    // instead of running the loop as many times as the
-    // length of the array
-
-    // How would i determine how many times i need the commas
-    for (let i = 1; i < length; i++) {
-      // wtf5.splice(-i * 3, 0, ",");
+    for (let i = 1; i < commaNumber; i++) {
+      splittedNumber.splice(arithmeticExpression(i), 0, ",");
     }
 
-    // console.log(wtf.length);
-    // toLocaleString() will solve the problem directly
-
-    // for (let i = 0; i < wtf.length; i++) {
-    //   if (wtf.length <= 3) {
-    //     return +wtf.join("");
-    //   } else {
-    //   }
-    //   // wtf.splice(wtf[i], 0, ",");
-    // }
-
-    console.log("");
-    console.log("");
+    return splittedNumber.join("");
+    // This is what i end up with if there were 10 numbers : [',', 1, ',', 1, 1, 1, ',', 1, 1, 1, ',', 1, 1, 1] for i <= commaNumber
+    // This is what i end up with if there were 10 numbers : [1, ',', 1, 1, 1, ',', 1, 1, 1, ',', 1, 1, 1] for i< commaNumber
   };
 
-  // numberFormatter(111111111111);
+  console.log(numberFormatter(1111111111111));
 
-  // t.b.c : Should the increment depend on the number of digits placed or the number of commas inserted ??
-};
+  // end of init
+}; // End of init
 
-// new Challenge = [3, 4, 5, NaN, NaN] remove the NaNs from the string -> similar to findIndex() and splice()
-// tbc : Start from your own function and capitalize the first words of each string !!
-// -END
+// - END
 init();
 // console.log(randNum.splice(1, 0, " ,")); -> it returns the removed element and not the original array
 
