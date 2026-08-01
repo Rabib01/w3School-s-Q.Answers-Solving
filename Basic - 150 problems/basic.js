@@ -1120,10 +1120,11 @@ console.log("hi");
   // took help from chatgpt and it said it was an arithmetic progression and hence the formula
   // This will later allow me to but this inside of a loop so that I can insert the commas in the respective positions
   const arithmeticExpression = function (n) {
+    // thank go for my mathematics brain, was also able to come up with this on my own
     return -(3 + (n - 1) * 4);
   };
 
-  const numberOfCommasNeeded = function (n, array) {
+  const numberOfCommasNeeded = function (array) {
     // divide and conquer
     // const constructedArray = Array.from(String(n), Number); // use this only when i am working with the number itself
     const constructedArray = array;
@@ -1143,10 +1144,10 @@ console.log("hi");
 
   const numberFormatter = function (number) {
     const splittedNumber = number.toString().split("").map(Number);
-    const deepCloneOfArray = structuredClone(splittedNumber);
+    // const deepCloneOfArray = structuredClone(splittedNumber); // Kept this just in case i needed it
     console.log(splittedNumber);
 
-    const commaNumber = numberOfCommasNeeded(undefined, splittedNumber);
+    const commaNumber = numberOfCommasNeeded(splittedNumber);
     console.log(commaNumber);
 
     for (let i = 1; i < commaNumber; i++) {
@@ -1159,25 +1160,85 @@ console.log("hi");
   };
 
   console.log(numberFormatter(1111111111111));
+  console.log("");
+  console.log("");
 
-  // end of init
+  // 57. Create String of Specified Copie
+  const stupidQuestionSolution = function (string, n) {
+    console.log(string, "|", n);
+    console.log(string.repeat(n));
+  };
+
+  {
+    /**
+  const repeatString = function (string, n) {
+  let result = "";
+
+  for (let i = 0; i < n; i++) {
+    result += string;
+  }
+  
+  return result;
+  };
+  This is the solution if .repeat() wasnt allowed
+     */
+  }
+  stupidQuestionSolution(sentence, 5);
+  console.log("");
+  console.log("");
+
+  //58. Four Copies of Last 3 Characters
+  const fourCopyCreator = function (string) {
+    // let me do this without .repet();
+    console.log(string);
+    const lastThreeCharacters = string.slice(-3);
+    let newString = "";
+    console.log(lastThreeCharacters);
+    for (let i = 0; i < 4; i++) {
+      string += ` ${lastThreeCharacters}`;
+    }
+    // console.log(string.concat(" ", lastThreeCharacters));
+    console.log(string);
+  };
+
+  fourCopyCreator(sentence);
+  console.log("");
+  console.log("");
+
+  //59. Extract First Half of Even-Length String
+  const firstHalfExtractor = function (string) {
+    // edge cases = Empty String -> In which case there would not be anything to extract ++ odd length string ++ even length string
+    if (string.length === 0) {
+      return `Nothing here to fucking extract`;
+    }
+    if (string.length % 2 === 0) {
+      const halflength = string.length / 2;
+      const halfString = string.slice(0, halflength);
+      return halfString;
+    } else {
+      return `this is an odd length string. Dont fucking know what to do with it`;
+    }
+  };
+  console.log(firstHalfExtractor(sentence + "s"));
+  console.log(firstHalfExtractor(""));
+  console.log(firstHalfExtractor(sentence + "ss"));
+  console.log("");
+  console.log("");
+  // 60. Remove First and Last Characters in String
+  const characterRemover = function (string) {
+    const splittedString = string.split("");
+    splittedString.shift();
+    splittedString.pop();
+    return splittedString.join("");
+  };
+  console.log(characterRemover(sentence));
+
+  // do not move beyound this line
 }; // End of init
 
 // - END
 init();
-// console.log(randNum.splice(1, 0, " ,")); -> it returns the removed element and not the original array
-
-// const arra1 = Array.from(String(numb1), Number);
-// console.log(numb1.toString().split("").map(Number));
 
 /**
- * The slice() method of Array instances returns a shallow copy of a portion of an array into a new array object selected from start to end (end not included) where start and end represent the index of items in that array. The original array will not be modified.
- *
- * const animals = ["ant", "bison", "camel", "duck", "elephant"];
- * 
- * console.log(animals.slice(2));
- * // Expected output: Array ["camel", "duck", "elephant"]
-
- * console.log(animals.slice(2, 4));
- * // Expected output: Array ["camel", "duck"]
+ * Further challenges : merger "Rabib" "Rayen" -> RRaabyien
  */
