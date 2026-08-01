@@ -1116,9 +1116,45 @@ console.log("hi");
   console.log("");
 
   // 56. Divide the numbers and format properly with commas ::
+
+  // I did this because of the commas that come after 3 digits follow the pattern -3, -7, -11, -15/
+  // took help from chatgpt and it said it was an arithmetic progression and hence the formula
+
   const ariithmeticExpression = function (n) {
     return -(3 + (n - 1) * 4);
   };
+
+  const numberOfCommasNeeded = function (n) {
+    // divide and conquer
+    const constructedArray = Array.from(String(n), Number);
+    const constructedArrayLength = constructedArray.length;
+    const [first, ...others] = constructedArray;
+    // console.log(first, others);
+    console.log(constructedArray);
+    let newArray = [];
+
+    const firstThree = constructedArray.slice(0, 3);
+    console.log(firstThree);
+
+    // did not think that I would be able to come up with this solution so fast
+    for (let i = 0; i < constructedArrayLength; i += 3) {
+      newArray.push(constructedArray.slice(i, i + 3));
+    }
+    console.log(newArray);
+
+    // one, 1, 2, 3 digits -> no commas
+
+    // if an array has n number of elements, how to create a 1d array and make them have 3 elements each
+
+    // 4,5,6 digits -> 1 commas
+
+    // 7,8,9 digits -> 2 commas
+  };
+
+  // numberOfCommasNeeded(111);
+  // numberOfCommasNeeded(1111);
+  // numberOfCommasNeeded(1111111);
+  numberOfCommasNeeded(1111111111);
 
   const numberFormatter = function (number) {
     // console.log(number);
@@ -1170,7 +1206,8 @@ console.log("hi");
     console.log("");
   };
 
-  numberFormatter(111111111111);
+  // numberFormatter(111111111111);
+
   // t.b.c : Should the increment depend on the number of digits placed or the number of commas inserted ??
 };
 
