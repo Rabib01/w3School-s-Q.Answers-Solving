@@ -1299,7 +1299,42 @@ console.log("hi");
   console.log("");
 
   // 64. Concat 2 strings with matching lenghts
-  const stringSentence2 = stringSentence + "S";
+  const stringSentence2 = stringSentence + "SomethingElseEntirely";
+  function concatMatchingLengthStrings(...arrayOfTwoStrings) {
+    if (arrayOfTwoStrings[0].length !== arrayOfTwoStrings[1].length) {
+      const longerString =
+        arrayOfTwoStrings[1].length > arrayOfTwoStrings[0].length // Important thig to note here that the ternary will still choose one string even if both of them have equal llengths
+          ? arrayOfTwoStrings[1] // For example if str[1].length > str[2].length ? str[1] : str[2] -> Condition is false as they have same lenghts. it will choise str[2]
+          : arrayOfTwoStrings[0];
+      const shorterString = arrayOfTwoStrings.find(
+        (ele) => ele !== longerString,
+      );
+      const charactersToRemove = Math.abs(
+        arrayOfTwoStrings[0].length - arrayOfTwoStrings[1].length,
+      );
+      const logerStringWithRestOfTheCharactersRemoved = longerString.slice(
+        0,
+        -charactersToRemove,
+      );
+      return `${shorterString}+${logerStringWithRestOfTheCharactersRemoved}`;
+    } else {
+      return `They are of equal lengths from the getgo and I do not plan to do anything with them`;
+    }
+
+    /**
+     * Steps to solve this problem using hte D&C framework
+     *
+     * Find the string with the bigger length ✔️ - Math.max() or use the ternary operator - I'll use the ternary as it is smarter
+     *
+     * Compare with the smaller string and ✔️
+     *
+     * remove the rest of the elements. ✔️
+     *
+     * concat them - easy peasy lemon squeasy ✔️
+     */
+  }
+  console.log(concatMatchingLengthStrings(stringSentence, stringSentence2));
+  console.log(concatMatchingLengthStrings(stringSentence, stringSentence));
 
   // do not move the { */ const init = function () {} } beyound this line
 }; // End of init
