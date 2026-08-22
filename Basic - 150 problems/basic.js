@@ -1233,7 +1233,75 @@ console.log("hi");
   };
   console.log(characterRemover(sentence));
 
-  // do not move beyound this line
+  const practiseTuriningWordsToLowerCaseAgain = function (string) {
+    return string
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
+  console.log(practiseTuriningWordsToLowerCaseAgain(sentence));
+  console.log("");
+  console.log("");
+
+  //61 Concatenate two strings without the first charracter
+  const stringConcatenatorFunction = function (...arrayOfTwoStrings) {
+    if (
+      arrayOfTwoStrings.length === 2 &&
+      arrayOfTwoStrings.every((ele) => typeof ele === "string")
+    )
+      return arrayOfTwoStrings.map((sentence) => sentence.slice(1)).join(" ");
+    else
+      return `Please only use two arguments for the function and make sure that both of them are strings`;
+  };
+  console.log(stringConcatenatorFunction(sentence, 123));
+  console.log("");
+  console.log("");
+
+  // 62. move last three characters to the start of the string :: Fuck!! I removed the first three to the last
+  const lastThreeCharacterMover = function (string) {
+    console.log(`Supt nig*a`);
+    const splittedString = string.split("");
+    const removedCharacters = splittedString.splice(0, 3);
+    console.log(splittedString, removedCharacters);
+    splittedString.push(removedCharacters);
+    return splittedString.flat().join("");
+  };
+
+  console.log(lastThreeCharacterMover(sentence));
+  console.log("");
+  console.log("");
+
+  //63. Extract the middle 3 characters from an odd lenngth string ::
+  const stringSentence = sentence
+    .split("")
+    .filter((ele) => ele !== " ")
+    .join("");
+
+  // Stupid me lol, 🤣🤣. I was looking for the array equivalent of charAt() when I can access the element directly using arr[something] 🤣🤣
+  const middle3CharacterExtracter = function (string) {
+    console.log(string.length);
+    if (string.length % 2 !== 0 && string.length >= 3) {
+      // console.log(
+      //   string.charAt(string.length / 2 - 1),
+      //   string.charAt(string.length / 2),
+      //   string.charAt(string.length / 2 + 1),
+      // );
+      return `${string.charAt(string.length / 2 - 1)}${string.charAt(string.length / 2)}${string.charAt(string.length / 2 + 1)}`;
+    } else {
+      return `The question specifically asks for odd length string, please do not use even lengthStrings here
+      Also do not use a string that is less than length = 3`;
+    }
+
+    // check for oddLength String
+  };
+  console.log(middle3CharacterExtracter(stringSentence));
+  console.log("");
+  console.log("");
+
+  // 64. Concat 2 strings with matching lenghts
+  const stringSentence2 = stringSentence + "S";
+
+  // do not move the { */ const init = function () {} } beyound this line
 }; // End of init
 
 // - END
