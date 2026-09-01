@@ -1463,7 +1463,26 @@ console.log("hi");
 
   // rotateNumbersLeft(array);
 
-  //71 - another stupud question
+  // 71 - another stupud question
+
+  // 72 - Set all elements to hte largest of first/last in array
+  const array2 = [20, 30, 40, 50, 60, 70, 80];
+
+  function allElementsSetterFunction(array) {
+    // console.log(array);
+    const [first, last] = [array.slice(0, 1)[0], array.slice(-1)[0]]; // decided to go with this wierd thing. array.slice() returns a new array and I am accessing the first element of that array1
+    // const [first1, last1] = [array.pop(), array.shift()];
+
+    const largestNumber = Math.max(first, last);
+    // console.log(first, last, largestNumber);
+
+    array = array.map((element) => largestNumber);
+    // just when you thing tyhat you have learned everything, you realised you learned nothing, .map() does not modify the orginal array, it creates a new array and if you want the original to be like this, then do array = arrayu.map(something, someything)
+
+    return array;
+  }
+
+  console.log(allElementsSetterFunction(array2));
 
   // do not move the { */ const init = function () {} } beyound this line
 } // End of init2()
@@ -1473,3 +1492,19 @@ init2();
 /**
  * Further challenges : merger "Rabib" "Rayen" -> RRaabyien
  */
+
+{
+  /**
+   *  const users = ["John", "Sarah", "Mike"];
+   *  function App() {
+    return (
+      <div>
+        { users.map(user => (
+          <p>{user}</p>
+        ))}
+      </div>
+   );
+  }
+  * ["<p>John</p>", "<p>Sarah</p>", "<p>Mike</p>"] -> essentially telling react which to render and which not not render based on the new array. -> why .map() is so useful in react 
+   */
+}
