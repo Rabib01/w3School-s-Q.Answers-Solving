@@ -1487,7 +1487,64 @@ console.log("hi");
   // do not move the { */ const init = function () {} } beyound this line
 } // End of init2()
 
-init2();
+// init2();
+
+function init3InterViewPrepRelatedQuestionAnswers() {
+  // taken from youtube video:https://www.youtube.com/watch?v=SDUfdW_Vydc
+
+  const str1 = "xyz";
+  const str2 = "123";
+  const arr = [15, 10, 11, 8, 12];
+  const targettedResult = 25;
+
+  function mergeInAnAlternatingWay(...str) {
+    const [first, second] = str;
+    const joined = str.join("").split("");
+    let newArr = [];
+    console.log("");
+    console.log("");
+
+    // for (
+    //   let i = 0, ii = 1, iii = 2;
+    //   i <= joined.length;
+    //   i += 3, ii += 3, iii += 3
+    // ) {
+    //   if (joined[i]) newArr.push(joined[i]);
+    //   if (joined[ii]) newArr.push(joined[ii]);
+    // }
+
+    for (let i = 0; i <= joined.length; i += 3) {
+      if (joined[i]) {
+        newArr.push(joined[i]);
+      }
+    }
+    for (let i = 1; i <= joined.length; i += 3) {
+      if (joined[i]) {
+        newArr.push(joined[i]);
+      }
+    }
+    for (let i = 2; i <= joined.length; i += 3) {
+      if (joined[i]) {
+        newArr.push(joined[i]);
+      }
+    }
+
+    console.log(newArr);
+
+    // easier way would gave been just res += str1[i] + str2[i] withing a forr loop. What the fucj was I even thinking
+  }
+  mergeInAnAlternatingWay(str1, str2);
+  console.log("");
+  console.log("");
+
+  function output25InTheArrayAndBribgOutIndex(array, target) {
+    console.log(array, target);
+    array.forEach((element) => element + 1);
+  }
+  output25InTheArrayAndBribgOutIndex(arr, targettedResult);
+}
+
+init3InterViewPrepRelatedQuestionAnswers();
 
 /**
  * Further challenges : merger "Rabib" "Rayen" -> RRaabyien
