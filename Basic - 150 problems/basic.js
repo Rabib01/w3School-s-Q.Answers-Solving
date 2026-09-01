@@ -1380,17 +1380,11 @@ console.log("hi");
     const firstThreeLetters = string.slice(0, 3);
 
     // Applying DeMorgan's Law as a guard clause here, which I did not know was possible before thanks to GPT :: !(A || B) -> !A && !B
-    if (
-      !(
-        firstThreeLetters.startsWith("Los") ||
-        firstThreeLetters.startsWith("New")
-      )
-    )
+    if (!(firstThreeLetters === "New" || firstThreeLetters === "Los"))
       return `Shut YO! Bitch Ass up, These motherfuckers do not start with los or new `;
 
-    if (firstThreeLetters.startsWith("Los"))
-      return `${firstThreeLetters} Angeles`;
-    if (firstThreeLetters.startsWith("New")) return `${firstThreeLetters} York`;
+    if (firstThreeLetters === "New") return `${firstThreeLetters} York`;
+    if (firstThreeLetters === "Los") return `${firstThreeLetters} Angeles`;
   }
 
   // comingUpWithCityNamerFunction(city1);
@@ -1403,15 +1397,78 @@ console.log("hi");
   console.log(
     comingUpWithCityNamerFunction(capitalizingTheFirtstLetterOfEachWord(city2)),
   );
+  console.log("");
+  console.log("");
 
   // solutin was fucking wrong, I'll ocme up with the proper solution later, i was doing .includes() check when I sould have created a function with .startsWith()
-  // motherfucking gpt is unnecessarily confusing me, first it told me to do it with starts with and now it is twlling me not to do itr as i have already used slice to do it
+  // motherfucking gpt is unnecessarily confusing me, first it told me to do it with .startswith() and now it is twlling me not to do itr as i have already used .slice() to do it
+
+  //67 - Stupid Qestion. 68 - creating a new string with the first and last n characters
+  function firstAnfLastNCharacters(string, number) {
+    // console.log(string, number);
+    if (string.length <= number * 2) return;
+    const [firstN, middlePortion, lastN] = [
+      string.slice(0, number),
+      string.slice(number, -number),
+      string.slice(-number),
+    ];
+
+    // console.log(firstN, lastN, middlePortion);
+    // const newString = [...firstN, ...lastN].join(""); || Does the same fucking thing only in a bit more confuisng and requires more computation
+    const newString = `${firstN}${lastN}`;
+
+    return newString;
+  }
+
+  console.log(firstAnfLastNCharacters("Javascript", 2));
+  console.log(firstAnfLastNCharacters("Japt", 2));
+  console.log(firstAnfLastNCharacters("Jat", 2));
+  console.log(firstAnfLastNCharacters("Jt", 2));
+  console.log(firstAnfLastNCharacters("J", 2));
+  console.log("");
+  console.log("");
+
+  // 69 - Another stupid question
 
   // do not move the { */ const init = function () {} } beyound this line
 }; // End of init
 
-// - END
-init();
+// - END - Has solutions from 1 - 69
+// init();
+
+/**
+ */ function init2() {
+  console.log(`--Hello world--`);
+  // console.log("");
+  // console.log("");
+
+  // 70 - JavaScript: Rotate the elements left of a given array of integers of length 3. I am gonna be doing this with more elements. Rotations will be done using setTimeout and the devTool Console
+
+  const array = [3, 4, 5];
+
+  function rotateNumbersLeft(array) {
+    console.log(array);
+    setInterval(() => {
+      const lastElement = array.pop();
+      array.unshift(lastElement);
+      console.log(array);
+      setTimeout(() => {
+        console.clear();
+      }, 1000);
+    }, 2000);
+
+    // const ele = array.pop();
+    // console.log(ele, array);
+  }
+
+  // rotateNumbersLeft(array);
+
+  //71 - another stupud question
+
+  // do not move the { */ const init = function () {} } beyound this line
+} // End of init2()
+
+init2();
 
 /**
  * Further challenges : merger "Rabib" "Rayen" -> RRaabyien
