@@ -1300,12 +1300,16 @@ console.log("hi");
 
   // 64. Concat 2 strings with matching lenghts
   const stringSentence2 = stringSentence + "SomethingElseEntirely";
+
   function concatMatchingLengthStrings(...arrayOfTwoStrings) {
+    console.log(arrayOfTwoStrings);
+
     if (arrayOfTwoStrings[0].length !== arrayOfTwoStrings[1].length) {
       const longerString =
         arrayOfTwoStrings[1].length > arrayOfTwoStrings[0].length // Important thig to note here that the ternary will still choose one string even if both of them have equal llengths
           ? arrayOfTwoStrings[1] // For example if str[1].length > str[2].length ? str[1] : str[2] -> Condition is false as they have same lenghts. it will choise str[2]
           : arrayOfTwoStrings[0];
+
       const shorterString = arrayOfTwoStrings.find(
         (ele) => ele !== longerString,
       );
@@ -1320,6 +1324,8 @@ console.log("hi");
     } else {
       return `They are of equal lengths from the getgo and I do not plan to do anything with them`;
     }
+    console.log("");
+    console.log("");
 
     /**
      * Steps to solve this problem using hte D&C framework
@@ -1335,6 +1341,71 @@ console.log("hi");
   }
   console.log(concatMatchingLengthStrings(stringSentence, stringSentence2));
   console.log(concatMatchingLengthStrings(stringSentence, stringSentence));
+
+  // `https://app.netlify.com/projects/astonishing-begonia-af4afe/overview`;
+
+  // https://astonishing-begonia-af4afe.netlify.app/
+
+  const getLink = function (...string) {
+    return string.join("");
+  };
+
+  console.log(
+    getLink("astonishing", "-begonia", "-af4afe", ".netlify", ".app"),
+  );
+
+  console.log("");
+  console.log("");
+
+  // 66 _ comiung up with city name if the string begins with los or new
+  const city1 = "Los Angeles";
+  const city5 = "los";
+  const city2 = "new";
+  const city3 = "";
+  const city4 = "Gra";
+
+  // I know that I have this somewhere aboe, I am still doing this again for practise
+  function capitalizingTheFirtstLetterOfEachWord(string) {
+    return string
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  }
+
+  function comingUpWithCityNamerFunction(string) {
+    if (!string.length)
+      return `Bitch you high, there is nothing to fucking return!!`;
+
+    // console.log(string);
+    const firstThreeLetters = string.slice(0, 3);
+
+    // Applying DeMorgan's Law as a guard clause here, which I did not know was possible before thanks to GPT :: !(A || B) -> !A && !B
+    if (
+      !(
+        firstThreeLetters.startsWith("Los") ||
+        firstThreeLetters.startsWith("New")
+      )
+    )
+      return `Shut YO! Bitch Ass up, These motherfuckers do not start with los or new `;
+
+    if (firstThreeLetters.startsWith("Los"))
+      return `${firstThreeLetters} Angeles`;
+    if (firstThreeLetters.startsWith("New")) return `${firstThreeLetters} York`;
+  }
+
+  // comingUpWithCityNamerFunction(city1);
+  console.log(
+    comingUpWithCityNamerFunction(capitalizingTheFirtstLetterOfEachWord(city5)),
+  );
+  console.log(
+    comingUpWithCityNamerFunction(capitalizingTheFirtstLetterOfEachWord(city4)),
+  );
+  console.log(
+    comingUpWithCityNamerFunction(capitalizingTheFirtstLetterOfEachWord(city2)),
+  );
+
+  // solutin was fucking wrong, I'll ocme up with the proper solution later, i was doing .includes() check when I sould have created a function with .startsWith()
+  // motherfucking gpt is unnecessarily confusing me, first it told me to do it with starts with and now it is twlling me not to do itr as i have already used slice to do it
 
   // do not move the { */ const init = function () {} } beyound this line
 }; // End of init
