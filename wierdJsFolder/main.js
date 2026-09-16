@@ -60,11 +60,13 @@ const foofoofoo = {
     bar:"yo yo honey singh", 
     anotherfoofoofoo: 1,
     baz: 2,
-    disco: 4
+    disco: 4,
+    pappu: 5
 }
 
 foofoofoo.anotherfoofoofoo = undefined // this will give undefined 
 foofoofoo.disco = null    // this will give null
+
 
 console.log(foofoofoo);
 console.log(foofoofoo.hasOwnProperty(bar)); // why the fuck is this false and the lower one is true ? - bar without quotes means the variable named bar 
@@ -80,7 +82,7 @@ console.log(foofoofoo[bar]);
 
 // motherfucker on hte first iteration i is name and not 1 because for in iteratiotes over keys one by one and not through indexes 
 for ( let i in foofoofoo){
-    if(foofoofoo.hasOwnProperty(i)){
+    if(foofoofoo.hasOwnProperty(i)){ // we are doing a has own property check here so that it does not go to check on inherited properties like toString()
         console.log(i + " : "+ foofoofoo[i]);
      {
         /**
@@ -91,14 +93,30 @@ for ( let i in foofoofoo){
 
             foofoofoo[i] -> foofoofoo["bar"] -> "yo yo honey singh"            
          */
+        {
+            /**
+             the smarter way of doing this : 
+             
+             for (const [key, value] of Object.entries(obj)) {
+               console.log(key, value);
+                }
+             *
+             */
+        }
      }   
     }
 }
 
-// the smarter way of doing this : 
-// for (const [key, value] of Object.entries(obj)) {
-//   console.log(key, value);
-// }
+console.log('');
+console.log(foofoofoo.toString()) // gives [object Object] -> The object notation of string
+console.log('');
+delete foofoofoo.pappu
+for(let i in foofoofoo){
+    if(foofoofoo.hasOwnProperty(i))
+        console.log(i +" : " + foofoofoo[i]); // here foofoofoo[i] gives foofoofoo["bar"] ... othres which evaluates and gives back the values
+        
+}
+
 
 
 
