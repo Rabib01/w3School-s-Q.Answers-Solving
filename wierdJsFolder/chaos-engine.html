@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Chaos Engine</title>
+    <style>
+      :root {
+        --bg: #050308;
+        --bg2: #0a0612;
+        --ink: #f4eefc;
+        --dim: #8a7fa8;
+        --accent1: #ff3d9a;
+        --accent2: #3dfff0;
+        --accent3: #ffe23d;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          120% 140% at 50% 0%,
+          var(--bg2),
+          var(--bg) 70%
+        );
+        overflow: hidden;
+        font-family: "Georgia", "Times New Roman", serif;
+        color: var(--ink);
+        -webkit-font-smoothing: antialiased;
+      }
+      #stage {
+        position: fixed;
+        inset: 0;
+        display: block;
+        cursor: crosshair;
+      }
+      .hud {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 28px 32px;
+        pointer-events: none;
+        z-index: 5;
+      }
+      .title {
+        font-size: clamp(22px, 4vw, 40px);
+        letter-spacing: 0.5px;
+        line-height: 1.05;
+        font-style: italic;
+        text-shadow:
+          0 0 24px rgba(255, 61, 154, 0.45),
+          0 0 48px rgba(61, 255, 240, 0.15);
+        max-width: 60vw;
+      }
+      .title span {
+        display: block;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        font-style: normal;
+        font-size: 12px;
+        letter-spacing: 2.5px;
+        color: var(--dim);
+        margin-top: 8px;
+      }
+      .panel {
+        pointer-events: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-end;
+      }
+      .modebar {
+        display: flex;
+        gap: 8px;
+      }
+      button {
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        font-size: 12px;
+        letter-spacing: 0.5px;
+        background: rgba(244, 238, 252, 0.06);
+        border: 1px solid rgba(244, 238, 252, 0.18);
+        color: var(--ink);
+        padding: 9px 16px;
+        border-radius: 100px;
+        cursor: pointer;
+        backdrop-filter: blur(6px);
+        transition:
+          background 0.2s ease,
+          border-color 0.2s ease,
+          transform 0.15s ease;
+      }
+      button:hover {
+        background: rgba(244, 238, 252, 0.14);
+        border-color: rgba(244, 238, 252, 0.4);
+      }
+      button:active {
+        transform: scale(0.95);
+      }
+      button.active {
+        background: linear-gradient(120deg, var(--accent1), var(--accent2));
+        color: #0a0612;
+        border-color: transparent;
+        font-weight: 600;
+      }
+      .hint {
+        font-size: 11px;
+        color: var(--dim);
+        letter-spacing: 0.3px;
+        max-width: 220px;
+        text-align: right;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+      }
+      .footer {
+        position: fixed;
+        left: 32px;
+        bottom: 24px;
+        z-index: 5;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        font-size: 11px;
+        color: var(--dim);
+        letter-spacing: 0.4px;
+        pointer-events: none;
+      }
+      .count {
+        position: fixed;
+        right: 32px;
+        bottom: 24px;
+        z-index: 5;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        font-size: 11px;
+        color: var(--dim);
+        letter-spacing: 0.4px;
+        pointer-events: none;
+        text-align: right;
+      }
+      .count b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      @media (max-width: 640px) {
+        .hud {
+          padding: 18px 18px;
+          flex-direction: column;
+          gap: 16px;
+        }
+        .title {
+          max-width: 100%;
+        }
+        .panel {
+          align-items: flex-start;
+          width: 100%;
+        }
+        .modebar {
+          flex-wrap: wrap;
+        }
+        .hint {
+          text-align: left;
+        }
+        .footer {
+          left: 18px;
+          bottom: 14px;
+        }
+        .count {
+          right: 18px;
+          bottom: 14px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        #stage {
+          display: none;
+        }
+        body::after {
+          content: "Motion is reduced on this device. The chaos engine draws swirling particle trails that react to touch — enable motion to see it.";
+          display: block;
+          padding: 80px 40px;
+          color: var(--dim);
+          font-family: "Helvetica Neue", Arial, sans-serif;
+          font-size: 14px;
+          max-width: 480px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="stage"></canvas>
+
+    <div class="hud">
+      <div class="title">
+        Chaos Engine
+        <span>A PARTICLE SYSTEM THAT DOESN'T BEHAVE</span>
+      </div>
+      <div class="panel">
+        <div class="modebar" id="modebar">
+          <button data-mode="whirl" class="active">Whirl</button>
+          <button data-mode="fireflies">Fireflies</button>
+          <button data-mode="lightning">Lightning</button>
+          <button data-mode="bloom">Bloom</button>
+        </div>
+        <div class="hint">
+          Move your cursor or finger across the screen. Click / tap to detonate.
+          Press a mode to change the physics.
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">gravity, hue &amp; noise, live &amp; unsupervised</div>
+    <div class="count">particles <b id="pcount">0</b></div>
+
+    <script>
+      (function () {
+        const canvas = document.getElementById("stage");
+        const ctx = canvas.getContext("2d");
+        let W, H, DPR;
+
+        function resize() {
+          DPR = Math.min(window.devicePixelRatio || 1, 2);
+          W = window.innerWidth;
+          H = window.innerHeight;
+          canvas.width = W * DPR;
+          canvas.height = H * DPR;
+          canvas.style.width = W + "px";
+          canvas.style.height = H + "px";
+          ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+        }
+        window.addEventListener("resize", resize);
+        resize();
+
+        const reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        // ---------- pointer state ----------
+        const pointer = {
+          x: W / 2,
+          y: H / 2,
+          px: W / 2,
+          py: H / 2,
+          vx: 0,
+          vy: 0,
+          down: false,
+          active: false,
+        };
+
+        function setPointer(x, y) {
+          pointer.px = pointer.x;
+          pointer.py = pointer.y;
+          pointer.x = x;
+          pointer.y = y;
+          pointer.vx = pointer.x - pointer.px;
+          pointer.vy = pointer.y - pointer.py;
+          pointer.active = true;
+        }
+
+        canvas.addEventListener("mousemove", (e) =>
+          setPointer(e.clientX, e.clientY),
+        );
+        canvas.addEventListener("mousedown", (e) => {
+          pointer.down = true;
+          burst(e.clientX, e.clientY, 60);
+        });
+        window.addEventListener("mouseup", () => (pointer.down = false));
+
+        canvas.addEventListener(
+          "touchmove",
+          (e) => {
+            e.preventDefault();
+            const t = e.touches[0];
+            setPointer(t.clientX, t.clientY);
+          },
+          { passive: false },
+        );
+        canvas.addEventListener(
+          "touchstart",
+          (e) => {
+            const t = e.touches[0];
+            setPointer(t.clientX, t.clientY);
+            pointer.down = true;
+            burst(t.clientX, t.clientY, 60);
+          },
+          { passive: false },
+        );
+        canvas.addEventListener("touchend", () => (pointer.down = false));
+
+        // ---------- mode ----------
+        let mode = "whirl";
+        const modebar = document.getElementById("modebar");
+        modebar.addEventListener("click", (e) => {
+          const btn = e.target.closest("button");
+          if (!btn) return;
+          [...modebar.children].forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          mode = btn.dataset.mode;
+        });
+
+        // ---------- particles ----------
+        const particles = [];
+        const MAX_PARTICLES = 1400;
+        let hueBase = 320;
+
+        function rand(a, b) {
+          return a + Math.random() * (b - a);
+        }
+
+        function spawn(x, y, opts) {
+          if (particles.length > MAX_PARTICLES) particles.shift();
+          const angle = rand(0, Math.PI * 2);
+          const speed = opts.speed || rand(0.4, 2.2);
+          particles.push({
+            x,
+            y,
+            vx: Math.cos(angle) * speed + (opts.vx || 0),
+            vy: Math.sin(angle) * speed + (opts.vy || 0),
+            life: 0,
+            maxLife: opts.maxLife || rand(60, 160),
+            size: opts.size || rand(1.5, 4),
+            hue:
+              opts.hue !== undefined
+                ? opts.hue
+                : (hueBase + rand(-40, 40)) % 360,
+            mode: mode,
+            spin: rand(-0.05, 0.05),
+          });
+        }
+
+        function burst(x, y, n) {
+          for (let i = 0; i < n; i++) {
+            spawn(x, y, {
+              speed: rand(2, 9),
+              maxLife: rand(40, 100),
+              size: rand(2, 5),
+            });
+          }
+        }
+
+        let frame = 0;
+        let lastEmit = 0;
+
+        function emitFromPointer() {
+          const dist = Math.hypot(pointer.vx, pointer.vy);
+          const count =
+            mode === "fireflies" ? 1 : Math.min(6, 1 + Math.floor(dist / 3));
+          for (let i = 0; i < count; i++) {
+            const jitterX = pointer.x + rand(-8, 8);
+            const jitterY = pointer.y + rand(-8, 8);
+            if (mode === "whirl") {
+              spawn(jitterX, jitterY, {
+                speed: rand(0.3, 1.4),
+                maxLife: rand(80, 180),
+                size: rand(1.5, 4),
+              });
+            } else if (mode === "fireflies") {
+              spawn(jitterX, jitterY, {
+                speed: rand(0.1, 0.5),
+                maxLife: rand(120, 260),
+                size: rand(1, 3),
+                hue: rand(45, 65),
+              });
+            } else if (mode === "lightning") {
+              spawn(jitterX, jitterY, {
+                speed: rand(3, 10),
+                maxLife: rand(15, 35),
+                size: rand(1, 2.5),
+                hue: rand(180, 200),
+              });
+            } else if (mode === "bloom") {
+              spawn(jitterX, jitterY, {
+                speed: rand(0.5, 2),
+                maxLife: rand(60, 130),
+                size: rand(3, 7),
+                hue: rand(300, 340),
+              });
+            }
+          }
+        }
+
+        function update() {
+          frame++;
+          hueBase = (hueBase + 0.15) % 360;
+
+          if (pointer.active) {
+            emitFromPointer();
+          }
+          if (pointer.down) {
+            spawn(pointer.x + rand(-20, 20), pointer.y + rand(-20, 20), {
+              speed: rand(1, 5),
+              maxLife: rand(30, 90),
+            });
+          }
+
+          // ambient drift particles so the canvas is alive even without input
+          if (frame % 4 === 0 && particles.length < MAX_PARTICLES * 0.5) {
+            spawn(rand(0, W), rand(0, H), {
+              speed: rand(0.1, 0.6),
+              maxLife: rand(100, 220),
+              size: rand(1, 2.5),
+              hue: rand(0, 360),
+            });
+          }
+
+          for (let i = particles.length - 1; i >= 0; i--) {
+            const p = particles[i];
+            p.life++;
+
+            if (p.mode === "whirl") {
+              const dx = p.x - pointer.x,
+                dy = p.y - pointer.y;
+              const d = Math.hypot(dx, dy) || 1;
+              const swirl = Math.min(400 / d, 3);
+              p.vx += (-dy / d) * swirl * 0.05;
+              p.vy += (dx / d) * swirl * 0.05;
+              p.vx *= 0.98;
+              p.vy *= 0.98;
+            } else if (p.mode === "fireflies") {
+              p.vx += rand(-0.05, 0.05);
+              p.vy += rand(-0.05, 0.05) - 0.01;
+              p.vx *= 0.96;
+              p.vy *= 0.96;
+            } else if (p.mode === "lightning") {
+              p.vx += rand(-0.6, 0.6);
+              p.vy += rand(-0.6, 0.6);
+              p.vx *= 0.9;
+              p.vy *= 0.9;
+            } else if (p.mode === "bloom") {
+              const dx = p.x - pointer.x,
+                dy = p.y - pointer.y;
+              const d = Math.hypot(dx, dy) || 1;
+              p.vx += (dx / d) * 0.06;
+              p.vy += (dy / d) * 0.06;
+              p.vx *= 0.97;
+              p.vy *= 0.97;
+            } else {
+              p.vy += 0.01;
+            }
+
+            p.x += p.vx;
+            p.y += p.vy;
+
+            if (p.x < -50) p.x = W + 50;
+            if (p.x > W + 50) p.x = -50;
+            if (p.y < -50) p.y = H + 50;
+            if (p.y > H + 50) p.y = -50;
+
+            if (p.life > p.maxLife) {
+              particles.splice(i, 1);
+            }
+          }
+
+          pointer.vx *= 0.8;
+          pointer.vy *= 0.8;
+        }
+
+        function draw() {
+          ctx.fillStyle = "rgba(5,3,8,0.16)";
+          ctx.fillRect(0, 0, W, H);
+
+          ctx.globalCompositeOperation = "lighter";
+          for (const p of particles) {
+            const lifeRatio = 1 - p.life / p.maxLife;
+            const alpha = Math.max(0, lifeRatio);
+            const r = p.size * (0.6 + lifeRatio * 0.8);
+            const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r * 4);
+            grad.addColorStop(0, `hsla(${p.hue}, 100%, 70%, ${alpha})`);
+            grad.addColorStop(0.4, `hsla(${p.hue}, 100%, 60%, ${alpha * 0.5})`);
+            grad.addColorStop(1, `hsla(${p.hue}, 100%, 50%, 0)`);
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, r * 4, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          ctx.globalCompositeOperation = "source-over";
+        }
+
+        const pcountEl = document.getElementById("pcount");
+        function loop() {
+          update();
+          draw();
+          if (frame % 10 === 0) pcountEl.textContent = particles.length;
+          requestAnimationFrame(loop);
+        }
+
+        // gentle auto-wander when no pointer input yet, so it feels alive immediately
+        let autoT = 0;
+        function autoWander() {
+          if (!pointer.active) {
+            autoT += 0.01;
+            setPointer(
+              W / 2 + Math.cos(autoT) * W * 0.25,
+              H / 2 + Math.sin(autoT * 1.3) * H * 0.2,
+            );
+          }
+        }
+        setInterval(autoWander, 30);
+
+        if (!reduceMotion) {
+          loop();
+        }
+      })();
+    </script>
+
+    <script src="main.js"></script>
+  </body>
+</html>
